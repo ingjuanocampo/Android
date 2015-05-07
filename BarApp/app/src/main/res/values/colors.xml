@@ -9,7 +9,7 @@
     -->
 
     <color name="myPrimaryColor">#213942</color>
-    <color name="myPrimaryDarkColor">#213942</color>
+    <color name="myPrimaryDarkColor">#213949</color>
     <color name="myAccentColor">#00baff</color>
     <color name="myDrawerBackground">#F2F2F2</color>
     <color name="myWindowBackground">#DEDEDE</color>

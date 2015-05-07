@@ -1,17 +1,23 @@
 package partyup.com.myapplication;
 
 
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 
-public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks {
+public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks,ElectronicBarFragment.OnFragmentInteractionListener,
+        RomanticBarFragment.OnFragmentInteractionListener {
 
     //private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -37,6 +43,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getFragmentManager().findFragmentById(R.id.fragment_drawer);
+
         mNavigationDrawerFragment.setup(
                 R.id.fragment_drawer,
                 (DrawerLayout) findViewById(R.id.drawer));
@@ -67,7 +74,50 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+
+        fragmentExecuter(new ViewPageTypeBars());
+        //startActivity(new Intent(this,ViewPageTypeBars.class));
         Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
+
+
+    }
+
+
+    Fragment oldFargment;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private void fragmentExecuter(Fragment fragment){
+
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+
+        if(fragment!=null){
+            if(!fragment.isAdded()){
+
+                if (oldFargment!=null)
+                    fragmentTransaction.remove(oldFargment);
+
+                fragmentTransaction.add(R.id.container, fragment);
+                //fragmentTransaction.addToBackStack(fragment.getTag());
+
+                fragmentTransaction.commit();
+
+            }else if(oldFargment!=fragment){
+
+                fragmentTransaction.remove(oldFargment);
+
+                fragmentTransaction.replace(R.id.container, fragment);
+
+                fragmentTransaction.commit();
+            }
+
+            oldFargment=fragment;
+
+        }
+
     }
 
     @Override
@@ -91,5 +141,10 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

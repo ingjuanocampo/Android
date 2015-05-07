@@ -7,4 +7,6 @@
          https://developer.android.com/design/patterns/navigation-drawer.html -->
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="margin_cardview">10dp</dimen>
+    <dimen name="elevation_cardview">12dp</dimen>
 </resources>
