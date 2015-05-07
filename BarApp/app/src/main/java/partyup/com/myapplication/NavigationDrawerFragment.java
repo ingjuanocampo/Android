@@ -17,8 +17,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +103,13 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
         mDrawerLayout.setStatusBarBackgroundColor(
                 getResources().getColor(R.color.myPrimaryDarkColor));
 
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+
+
+        mActionBarDrawerToggle = new ActionBarDrawerToggle(
+                getActivity(), mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -211,6 +219,7 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
         // If the drawer is open, show the global app actions in the action bar. See also
         // showGlobalContextActionBar, which controls the top-left area of the action bar.
         if (mDrawerLayout != null && isDrawerOpen()) {
@@ -232,5 +241,17 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
     private ActionBar getActionBar() {
         return ((ActionBarActivity) getActivity()).getSupportActionBar();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (mActionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }
