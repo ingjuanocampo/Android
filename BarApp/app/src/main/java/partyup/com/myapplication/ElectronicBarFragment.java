@@ -86,12 +86,16 @@ public class ElectronicBarFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(mViewContainer.getContext());
 
         mRecyclerView.setLayoutManager(mLayoutManager);
+        Bar mBar= new Bar();
+        mBar.setmAddress("ZONA T");
+        mBar.setmName("FONETICA BAR");
+        mBar.setmSchedule("7pm - 12am");
 
-        mBars.add(new Bar());
-        mBars.add(new Bar());
-        mBars.add(new Bar());
+        mBars.add(mBar);
+        mBars.add(mBar);
+        mBars.add(mBar);
 
-        mBars.add(new Bar());
+        mBars.add(mBar);
 
         mBars.add(new Bar());
 

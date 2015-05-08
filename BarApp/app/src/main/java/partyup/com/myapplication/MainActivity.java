@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks,ElectronicBarFragment.OnFragmentInteractionListener,
-        RomanticBarFragment.OnFragmentInteractionListener {
+        RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener {
 
     //private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -76,7 +76,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     public void onNavigationDrawerItemSelected(int position) {
 
 
-        fragmentExecuter(new ViewPageTypeBars());
+        switch (position){
+            case 0:
+                fragmentExecuter(new ViewPageTypeBars());
+
+                break;
+            case 1:
+                fragmentExecuter(new FragmentMap());
+
+                break;
+
+
+        }
         //startActivity(new Intent(this,ViewPageTypeBars.class));
         Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
 

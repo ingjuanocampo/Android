@@ -36,10 +36,34 @@
     <style name="viepagertitlestrip">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/myPrimaryDarkColor</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:background">@color/myAccentColor</item>
+        <item name="android:textColor">@color/myTextPrimaryColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/myPrimaryColor</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="TextNormalGray">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+
+
+
+    </style>
+
+    <style name="TextNormalGreen">
+    <item name="android:textColor">@color/green_light</item>
+    <item name="android:textStyle">normal</item>
+    <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
+    <style name="TextBigGray">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_big</item>
+
+
     </style>
 
 </resources>

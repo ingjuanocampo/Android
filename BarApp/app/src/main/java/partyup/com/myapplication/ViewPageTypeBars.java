@@ -30,6 +30,10 @@ public class ViewPageTypeBars  extends Fragment implements ElectronicBarFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mBarsType= new ArrayList<>();
+        mBarsType.add(new BarFragmentObject("ELECTRONICA",new ElectronicBarFragment()));
+        mBarsType.add(new BarFragmentObject("ROMANTICO", new RomanticBarFragment()));
+
 
     }
 
@@ -38,15 +42,11 @@ public class ViewPageTypeBars  extends Fragment implements ElectronicBarFragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         mViewContainer= inflater.inflate(R.layout.viewpagertypesbar,container,false);
 
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
 
-         mBarsType= new ArrayList<>();
-        mBarsType.add(new BarFragmentObject("Electronica",new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("Romanticos",new RomanticBarFragment()));
         mBarsTypePagerAdapter =
                 new AdapterViewPagerTypeBars(
                         getChildFragmentManager(),mBarsType);

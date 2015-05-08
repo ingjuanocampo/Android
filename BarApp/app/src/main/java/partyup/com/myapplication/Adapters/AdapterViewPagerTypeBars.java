@@ -18,6 +18,7 @@ import partyup.com.myapplication.RomanticBarFragment;
 
 
 public class AdapterViewPagerTypeBars extends FragmentPagerAdapter {
+
     public AdapterViewPagerTypeBars(FragmentManager fm,ArrayList<BarFragmentObject> data) {
         super(fm);
         this.mFragments=data;
@@ -34,7 +35,7 @@ public class AdapterViewPagerTypeBars extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return mFragments.size();
     }
 
     @Override
