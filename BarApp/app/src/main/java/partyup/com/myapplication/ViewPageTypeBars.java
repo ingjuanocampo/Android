@@ -16,7 +16,7 @@ import partyup.com.myapplication.Adapters.AdapterViewPagerTypeBars;
 import partyup.com.myapplication.Objects.BarFragmentObject;
 
 /**
- * Created by Juan on 07/05/2015.
+ * Created by Juan Manuel Ocampo on 07/05/2015.
  */
 public class ViewPageTypeBars  extends Fragment implements ElectronicBarFragment.OnFragmentInteractionListener,
                 RomanticBarFragment.OnFragmentInteractionListener{
@@ -51,7 +51,16 @@ public class ViewPageTypeBars  extends Fragment implements ElectronicBarFragment
                 new AdapterViewPagerTypeBars(
                         getChildFragmentManager(),mBarsType);
         mViewPager = (ViewPager) mViewContainer.findViewById(R.id.pager);
-        mViewPager.setAdapter(mBarsTypePagerAdapter);
+        try{
+            if(mViewPager.getAdapter().getCount()==0){
+                mViewPager.setAdapter(mBarsTypePagerAdapter);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            mViewPager.setAdapter(mBarsTypePagerAdapter);
+
+        }
+
 
         return mViewContainer;
     }

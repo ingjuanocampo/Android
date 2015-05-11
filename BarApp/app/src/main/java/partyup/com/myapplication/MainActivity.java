@@ -22,11 +22,17 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
     //private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
+    private ViewPageTypeBars fragmentBars;
+    private FragmentMap fragmentMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_blacktoolbar);
         mTitle = getTitle();
+
+        fragmentBars= new ViewPageTypeBars();
+        fragmentMap = new FragmentMap();
 
         //mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
 
@@ -72,17 +78,19 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         return super.onCreateOptionsMenu(menu);
     }
 
+
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 
 
         switch (position){
             case 0:
-                fragmentExecuter(new ViewPageTypeBars());
+                fragmentExecuter(fragmentBars);
 
                 break;
             case 1:
-                fragmentExecuter(new FragmentMap());
+                fragmentExecuter(fragmentMap);
 
                 break;
 
