@@ -1,6 +1,7 @@
 package partyup.com.myapplication;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -8,22 +9,34 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import partyup.com.myapplication.Adapters.AdapterViewPagerTypeBars;
+import partyup.com.myapplication.Adapters.TabPagerAdapter;
+import partyup.com.myapplication.Objects.BarFragmentObject;
 
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks,ElectronicBarFragment.OnFragmentInteractionListener,
-        RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener {
+        RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener,FragmentCrossoverBar.OnFragmentInteractionListener {
 
     //private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    private ViewPageTypeBars fragmentBars;
-    private FragmentMap fragmentMap;
+    ActionBar actionBar;
+    //private ViewPageTypeBars fragmentBars;
+    //private FragmentMap fragmentMap;
+
+    private ArrayList<BarFragmentObject> mBarsType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +44,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         setContentView(R.layout.activity_main_blacktoolbar);
         mTitle = getTitle();
 
-        fragmentBars= new ViewPageTypeBars();
-        fragmentMap = new FragmentMap();
+        //fragmentBars= new ViewPageTypeBars();
+        //fragmentMap = new FragmentMap();
 
         //mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
 
@@ -53,18 +66,150 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         mNavigationDrawerFragment.setup(
                 R.id.fragment_drawer,
                 (DrawerLayout) findViewById(R.id.drawer));
+
+        actionBar = getSupportActionBar();
+
+        // Specify that tabs should be displayed in the action bar.
+
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        mBarsType= new ArrayList<>();
+        mBarsType.add(new BarFragmentObject("Electronicos",new ElectronicBarFragment()));
+        mBarsType.add(new BarFragmentObject("Romanticos", new RomanticBarFragment()));
+        mBarsType.add(new BarFragmentObject("Cross Over",new FragmentCrossoverBar()));
+        mBarsType.add(new BarFragmentObject("Bares", new RomanticBarFragment()));
+
+
+        setSwipeTabMode();
+
+        setAllFragmets();
+
+
+
+      /*
+        ActionBar.Tab tab = actionBar.newTab()
+                .setText("Electronica")
+                .setTabListener(new TabsListener(
+                        this, "Perdida de Documentos", ElectronicBarFragment.class));
+        actionBar.addTab(tab);
+
+        tab = actionBar.newTab()
+.setText("Romanticos")                .setTabListener(new TabsListener(
+                        this, "Perdida de Celular", RomanticBarFragment.class));
+        actionBar.addTab(tab);*/
+
+
+
+
     }
+
+    private void setAllFragmets() {
+
+
+
+        for (int i=0;i<mBarsType.size();i++){
+
+            /**CREAR TABS**/
+            ActionBar.Tab tab = actionBar.newTab()
+                    .setText(mBarsType.get(i).getTitle())
+                    .setTabListener(new TabsListener(
+                            this,mBarsType.get(i).getTitle() , mBarsType.get(i).getFragment().getClass()));
+            actionBar.addTab(tab);
+        }
+
+
+    }
+    //AdapterViewPagerTypeBars mBarsTypePagerAdapter;
+    //ViewPager mViewPager;
+
+   // private ArrayList<BarFragmentObject> mBarsType;
+
+  /*  private void setViewTabPager(){
+
+        mBarsType= new ArrayList<>();
+        mBarsType.add(new BarFragmentObject("ELECTRONICA",new ElectronicBarFragment()));
+        mBarsType.add(new BarFragmentObject("ROMANTICO", new RomanticBarFragment()));
+
+        mBarsTypePagerAdapter =
+                new AdapterViewPagerTypeBars(
+                        getSupportFragmentManager(),mBarsType);
+        mViewPager = (ViewPager)findViewById(R.id.pager);
+        try{
+            if(mViewPager.getAdapter().getCount()==0){
+                mViewPager.setAdapter(mBarsTypePagerAdapter);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            mViewPager.setAdapter(mBarsTypePagerAdapter);
+
+        }
+
+
+    }*/
+
+    private ViewPager Tab;
+    private TabPagerAdapter TabAdapter;
+
+    private void setSwipeTabMode() {
+        TabAdapter = new TabPagerAdapter(getSupportFragmentManager(),mBarsType);
+        Tab = (ViewPager)findViewById(R.id.pager);
+        Tab.setOnPageChangeListener(
+                new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        actionBar = getSupportActionBar();
+                        actionBar.setSelectedNavigationItem(position);
+                    }
+                });
+        Tab.setAdapter(TabAdapter);
+    }
+
+
+
+    public class TabsListener  implements ActionBar.TabListener {
+
+        private Fragment fragment;
+        private final String tag;
+
+        public TabsListener(Activity activity, String tag, Class cls) {
+            this.tag = tag;
+            fragment = Fragment.instantiate(activity, cls.getName());
+        }
+
+        public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+            //ft.replace(android.R.id.content, fragment);  //SOLO ESTO SE DEBE RESPLAZAR PARA INHABILITAR EL SWIPE
+            //Toast.makeText(getApplicationContext(),tag,Toast.LENGTH_SHORT).show();
+            //settitleActionBar(tag);
+            View focus = getCurrentFocus();
+            if (focus != null) {
+               // mAD_utiles.keyBoardHide(focus);
+            }
+            Tab.setCurrentItem(tab.getPosition());
+        }
+
+        public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+            //ft.remove(fragment);// se movio para intentar matar fragmets
+            View focus = getCurrentFocus();
+            if (focus != null) {
+               // mAD_utiles.keyBoardHide(focus);
+            }
+        }
+
+        public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {}
+    }
+
 
     private CharSequence mTitle;
 
 
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
 
+    //Para retornar al menu habilitar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
@@ -86,11 +231,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
 
         switch (position){
             case 0:
-                fragmentExecuter(fragmentBars);
+               // fragmentExecuter(fragmentBars);
 
                 break;
             case 1:
-                fragmentExecuter(fragmentMap);
+                //fragmentExecuter(fragmentMap);
 
                 break;
 

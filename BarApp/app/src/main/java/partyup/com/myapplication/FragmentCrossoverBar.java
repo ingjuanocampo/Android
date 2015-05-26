@@ -4,29 +4,20 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-
-import partyup.com.myapplication.Adapters.RecyclerAdapterBar;
-import partyup.com.myapplication.Interfaces.OnClickBarItem;
-import partyup.com.myapplication.Objects.Bar;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ElectronicBarFragment.OnFragmentInteractionListener} interface
+ * {@link FragmentCrossoverBar.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ElectronicBarFragment#newInstance} factory method to
+ * Use the {@link FragmentCrossoverBar#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
+public class FragmentCrossoverBar extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,13 +26,8 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private View mViewContainer;
 
-    private RecyclerView mRecyclerView;
     private OnFragmentInteractionListener mListener;
-    private LinearLayoutManager mLayoutManager;
-    private RecyclerAdapterBar mAdapter;
-    private ArrayList<Bar> mBars= new ArrayList<>();
 
     /**
      * Use this factory method to create a new instance of
@@ -49,11 +35,11 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ElectronicBarFragment.
+     * @return A new instance of fragment FragmentCrossoverBar.
      */
     // TODO: Rename and change types and number of parameters
-    public static ElectronicBarFragment newInstance(String param1, String param2) {
-        ElectronicBarFragment fragment = new ElectronicBarFragment();
+    public static FragmentCrossoverBar newInstance(String param1, String param2) {
+        FragmentCrossoverBar fragment = new FragmentCrossoverBar();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,7 +47,7 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
         return fragment;
     }
 
-    public ElectronicBarFragment() {
+    public FragmentCrossoverBar() {
         // Required empty public constructor
     }
 
@@ -78,40 +64,7 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        mViewContainer= inflater.inflate(R.layout.fragment_electronic_bar, container, false);
-
-        mRecyclerView= (RecyclerView)mViewContainer.findViewById(R.id.reyclerview_electronic_bars);
-
-        mRecyclerView.setHasFixedSize(true); //--> SOLO si el tamao no cmabia, mejora mucho el rendimiento.
-
-        mLayoutManager = new LinearLayoutManager(mViewContainer.getContext());
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        Bar mBar= new Bar();
-        mBar.setmAddress("ZONA T");
-        mBar.setmName("FONETICA BAR");
-        mBar.setmSchedule("7pm - 12am");
-
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-
-        mAdapter= new RecyclerAdapterBar(mBars,this);
-
-        mRecyclerView.setAdapter(mAdapter);
-
-
-
-
-
-        return mViewContainer;
+        return inflater.inflate(R.layout.fragment_crossover_bar, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -136,13 +89,6 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onClickBar(int pos) {
-
-        Toast.makeText(getActivity(),"presiono"+pos,Toast.LENGTH_SHORT).show();
-
     }
 
     /**
