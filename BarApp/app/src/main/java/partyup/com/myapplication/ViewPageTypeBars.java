@@ -32,7 +32,7 @@ public class ViewPageTypeBars  extends Fragment implements ElectronicBarFragment
 
         mBarsType= new ArrayList<>();
         mBarsType.add(new BarFragmentObject("ELECTRONICA",new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("ROMANTICO", new RomanticBarFragment()));
+        //mBarsType.add(new BarFragmentObject("ROMANTICO", new RomanticBarFragment()));
 
 
     }
@@ -47,7 +47,7 @@ public class ViewPageTypeBars  extends Fragment implements ElectronicBarFragment
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
 
-        mBarsTypePagerAdapter =
+        /*mBarsTypePagerAdapter =
                 new AdapterViewPagerTypeBars(
                         getChildFragmentManager(),mBarsType);
         mViewPager = (ViewPager) mViewContainer.findViewById(R.id.pager);
@@ -59,7 +59,7 @@ public class ViewPageTypeBars  extends Fragment implements ElectronicBarFragment
             e.printStackTrace();
             mViewPager.setAdapter(mBarsTypePagerAdapter);
 
-        }
+        }*/
 
 
         return mViewContainer;

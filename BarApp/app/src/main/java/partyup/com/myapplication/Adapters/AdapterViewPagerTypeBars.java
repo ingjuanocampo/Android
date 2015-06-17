@@ -1,7 +1,6 @@
 package partyup.com.myapplication.Adapters;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
@@ -17,9 +16,9 @@ import partyup.com.myapplication.RomanticBarFragment;
  */
 
 
-public class AdapterViewPagerTypeBars extends FragmentPagerAdapter {
+public class AdapterViewPagerTypeBars{// extends FragmentPagerAdapter {
 
-    public AdapterViewPagerTypeBars(FragmentManager fm,ArrayList<BarFragmentObject> data) {
+  /* public AdapterViewPagerTypeBars(FragmentManager fm,ArrayList<BarFragmentObject> data) {
         super(fm);
         this.mFragments=data;
     }
@@ -42,5 +41,5 @@ public class AdapterViewPagerTypeBars extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
 
         return mFragments.get(position).getTitle();
-    }
+    }*/
 }

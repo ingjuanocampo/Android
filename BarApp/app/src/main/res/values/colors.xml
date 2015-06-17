@@ -19,4 +19,11 @@
     <color name="green_light">#00FF00</color>
 
     <color name="selected_gray">#ffdbdbdb</color>
+
+
+
+    <!-- Colors Flat Buttons -->
+
+    <color name="flatButtonPress">@color/gray</color>
+    <color name="flatButtonUnPress">@android:color/white</color>
 </resources>

@@ -9,9 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cv"
-        card_view:cardCornerRadius="5dp"
+        card_view:cardCornerRadius="2dp"
         card_view:cardElevation="@dimen/elevation_cardview"
         card_view:cardUseCompatPadding="true"
+        android:clickable="true"
+        android:focusable="true"
         >
 
         <LinearLayout
@@ -21,65 +23,91 @@
             android:gravity="center_vertical"
             >
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                >
             <ImageView
                 android:src="@drawable/nightclub"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:id="@+id/bar_photo"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
 
                 />
+
+                <TextView
+                    android:text="Fonetica "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bar_name"
+                    android:layout_alignParentBottom="true"
+                    style="@style/TextBigWhite"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/music"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    />
+
+
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="16dp"
+                android:gravity="center_vertical"
                 >
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                        <TextView
-                            android:text="Fonetica "
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/bar_name"
-                            android:layout_alignParentTop="true"
-                            style="@style/TextBigGray"
-                            />
 
-                        <TextView
+
+                    <TextView
+                        android:text="Direccion"
+                        android:textStyle="italic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bar_dir"
+                        style="@style/TextNormalGray"
+
+
+                        />
+
+
+                    <TextView
                             android:text="$ 7000"
                             android:textStyle="italic"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/bar_price"
                             style="@style/TextNormalGray"
-
-
                             />
 
                     <TextView
                             android:text="10 pm - 5 am"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/myAccentColor"
+                            android:textColor="@color/green_light"
                             android:id="@+id/bar_hour"
 
                             />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
                     android:gravity="right">
-
-                    <ImageView
-                        android:src="@drawable/like_tiny"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></ImageView>
 
                     <TextView
                         android:includeFontPadding="true"
@@ -91,9 +119,18 @@
                         android:text="4,5"
                         style="@style/TextNormalGreen"/>
 
+                    <ImageButton
+                        android:layout_marginTop="@dimen/margin_cardview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@drawable/share"/>
+
                 </LinearLayout>
 
             </LinearLayout>
+
+
 
         </LinearLayout>
 

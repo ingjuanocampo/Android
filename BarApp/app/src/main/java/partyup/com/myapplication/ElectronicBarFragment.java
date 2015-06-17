@@ -1,6 +1,7 @@
 package partyup.com.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -142,6 +143,9 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
     public void onClickBar(int pos) {
 
         Toast.makeText(getActivity(),"presiono"+pos,Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(mViewContainer.getContext(),ActivityBarDetails.class);
+        startActivityForResult(intent,0);
 
     }
 

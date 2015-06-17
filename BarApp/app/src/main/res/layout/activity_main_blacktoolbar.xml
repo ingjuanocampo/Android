@@ -7,22 +7,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-    <FrameLayout
-        android:id="@+id/container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:clickable="true"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+
+        />
+
+
+        <!--partyup.com.myapplication.views.SlidingTabLayout
+            android:id="@+id/sliding_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
     <android.support.v4.view.ViewPager
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
         android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"-->
 
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:clickable="true"
+            android:layout_height="match_parent"/>
+        <!--/android.support.v4.view.ViewPager-->
+    </LinearLayout>
     <!-- android:layout_marginTop="?android:attr/actionBarSize"-->
     <fragment
         android:id="@+id/fragment_drawer"
