@@ -61,7 +61,7 @@
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right"
         android:elevation="3dp"
-        android:src="@android:drawable/sym_action_chat"
+        android:src="@drawable/abc_ic_menu_share_mtrl_alpha"
         android:layout_margin="10dp"
         android:clickable="true"/>
 

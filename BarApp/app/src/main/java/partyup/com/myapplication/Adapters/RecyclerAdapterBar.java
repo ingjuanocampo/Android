@@ -1,12 +1,14 @@
 package partyup.com.myapplication.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 
 import partyup.com.myapplication.Interfaces.OnClickBarItem;
 import partyup.com.myapplication.Objects.Bar;
+import partyup.com.myapplication.Objects.ColorsTheme;
 import partyup.com.myapplication.R;
 
 /**
@@ -53,6 +56,8 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
                 .placeholder(R.drawable.keep_calm_and_still_loading_bk)
                 .into(holder.imgBarPhoto);
 
+        holder.lnCardview.setBackgroundColor(getColorId(ColorsTheme.valueOf(mBars.get(position).getColor())));
+
 
         // ;
         holder.cv.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +66,43 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
                 mActividad.onClickBar(position);
             }
         });
+    }
+
+    private int getColorId(ColorsTheme colorsTheme) {
+
+        switch (colorsTheme){
+            case RED:
+                return mContext.getResources().getColor(R.color.redToolbar);
+            case GREEN:
+                return mContext.getResources().getColor(R.color.yellowToobar);
+            case PINK:
+                return mContext.getResources().getColor(R.color.pinkToobar);
+            case PURPLE:
+                return mContext.getResources().getColor(R.color.purpleToobar);
+            case PURPLE_B:
+                return mContext.getResources().getColor(R.color.purpleBToobar);
+            case BLUE:
+                return mContext.getResources().getColor(R.color.blueToobar);
+            case BLUE_C:
+                return mContext.getResources().getColor(R.color.blueCToobar);
+            case CYAN:
+                return mContext.getResources().getColor(R.color.cyanToobar);
+            case CYAN_B:
+                return mContext.getResources().getColor(R.color.cyanBToobar);
+            case ORANGE:
+                return mContext.getResources().getColor(R.color.orangeToobar);
+            case DEEP_ORANGE:
+                return mContext.getResources().getColor(R.color.deeporangeToobar);
+            case BROWN:
+                return mContext.getResources().getColor(R.color.browToobar);
+            case GRAY:
+                return mContext.getResources().getColor(R.color.greyToobar);
+            default:
+                return mContext.getResources().getColor(R.color.browToobar);
+
+        }
+
+
     }
 
     @Override
@@ -76,6 +118,7 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
         ImageView imgBarPhoto;
         TextView txtBarPrice;
         TextView txtBarAddress;
+        LinearLayout lnCardview;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -85,6 +128,7 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
             imgBarPhoto = (ImageView)itemView.findViewById(R.id.bar_photo);
             txtBarPrice= (TextView)itemView.findViewById(R.id.bar_price);
             txtBarAddress= (TextView)itemView.findViewById(R.id.bar_dir);
+            lnCardview=(LinearLayout)itemView.findViewById(R.id.linear_cardview_item);
 
 
 

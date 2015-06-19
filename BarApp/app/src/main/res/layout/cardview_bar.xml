@@ -17,24 +17,25 @@
         >
 
         <LinearLayout
+            android:id="@+id/linear_cardview_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center_vertical"
-            >
+            android:background="@color/pinkAccent"            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="192dp"
                 >
-            <ImageView
-                android:src="@drawable/keep_calm_and_still_loading_bk"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/bar_photo"
-                android:scaleType="centerCrop"
+                <ImageView
+                    android:src="@drawable/keep_calm_and_still_loading_bk"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/bar_photo"
+                    android:scaleType="centerCrop"
 
-                />
+                    />
 
                 <TextView
                     android:text="Fonetica "
@@ -78,29 +79,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/bar_dir"
-                        style="@style/TextNormalGray"
+                        style="@style/TextNormalWhite"
 
 
                         />
 
 
                     <TextView
-                            android:text="$ 7000"
-                            android:textStyle="italic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/bar_price"
-                            style="@style/TextNormalGray"
-                            />
+                        android:text="$ 7000"
+                        android:textStyle="italic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bar_price"
+                        style="@style/TextNormalWhite"
+                        />
 
                     <TextView
-                            android:text="10 pm - 5 am"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/green_light"
-                            android:id="@+id/bar_hour"
+                        android:text="10 pm - 5 am"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/green_light"
+                        android:id="@+id/bar_hour"
 
-                            />
+                        />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="0dp"
@@ -119,12 +120,8 @@
                         android:text="4,5"
                         style="@style/TextNormalGreen"/>
 
-                    <ImageButton
-                        android:layout_marginTop="@dimen/margin_cardview"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="5dp"
-                        android:background="@drawable/share"/>
+
+
 
                 </LinearLayout>
 
