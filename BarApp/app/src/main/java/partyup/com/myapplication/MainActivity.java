@@ -20,11 +20,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.internal.ne;
+
 import java.util.ArrayList;
 
 import partyup.com.myapplication.Adapters.AdapterViewPagerTypeBars;
 import partyup.com.myapplication.Adapters.TabPagerAdapter;
 import partyup.com.myapplication.Objects.BarFragmentObject;
+import partyup.com.myapplication.Objects.Category;
+import partyup.com.myapplication.Provider.HandlerProvider;
+import partyup.com.myapplication.Provider.Provider;
+import partyup.com.myapplication.Provider.ProviderType;
 import partyup.com.myapplication.views.SlidingTabLayout;
 
 
@@ -38,7 +44,9 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
     //private Fragment fragmentBars;
     private Fragment fragmentMap;
 
-    private ArrayList<BarFragmentObject> mBarsType;
+    //private ArrayList<BarFragmentObject> mBarsType;
+
+    private Provider mProvider;
 
 
     @Override
@@ -77,15 +85,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
         // Specify that tabs should be displayed in the action bar.
 
-        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        mBarsType= new ArrayList<>();
-        mBarsType.add(new BarFragmentObject("Electronicos",new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("Romanticos", new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("Cross Over",new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("Bares", new ElectronicBarFragment()));
 
 
+        //mBarsType= HandlerProvider.getProvider().getFragmentsBars();
+        //HandlerProvider.getProvider().setmContext(this);
 
 
         if (savedInstanceState == null) {
@@ -94,37 +97,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
             transaction.replace(R.id.container, fragment);
             transaction.commit();
         }
-
-        //setSwipeTabMode();
-
-        //setAllFragmets();
-
-
-
-      /*
-        ActionBar.Tab tab = actionBar.newTab()
-                .setText("Electronica")
-                .setTabListener(new TabsListener(
-                        this, "Perdida de Documentos", ElectronicBarFragment.class));
-        actionBar.addTab(tab);
-
-        tab = actionBar.newTab()
-.setText("Romanticos")                .setTabListener(new TabsListener(
-                        this, "Perdida de Celular", RomanticBarFragment.class));
-        actionBar.addTab(tab);*/
-
-
-
-
     }
 
-    private void setAllFragmets() {
+
+    /*private void setAllFragmets() {
 
 
 
         for (int i=0;i<mBarsType.size();i++){
 
-            /**CREAR TABS**/
+            /**CREAR TABS
             ActionBar.Tab tab = actionBar.newTab()
                     .setText(mBarsType.get(i).getTitle())
                     .setTabListener(new TabsListener(
@@ -133,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
         }
 
 
-    }
+    }*/
     //AdapterViewPagerTypeBars mBarsTypePagerAdapter;
     //ViewPager mViewPager;
 

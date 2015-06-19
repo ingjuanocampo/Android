@@ -1,5 +1,6 @@
 package partyup.com.myapplication.RequestManager;
 
+import android.net.Uri;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
@@ -18,13 +19,17 @@ import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.CharBuffer;
 
 import partyup.com.myapplication.utiles.Definitions;
 
@@ -35,13 +40,13 @@ import partyup.com.myapplication.utiles.Definitions;
 public class PostMethod {
 
     //public final static String urlbase = "http://192.168.1.113/SICON/";//Privada
-    public final static String urlbase= "http://172.28.9.234/";
+    public final static String urlbase= "http://atlas.marcohern.com";
 
 
     //public final static String urlbase="http://181.143.141.30/SICON/";//Publica
 
 
-    private String url =urlbase+ "SAC3SERVICES/RestServices.svc/";
+    private String url =urlbase+ "/bars";
 
 
 
@@ -60,6 +65,12 @@ public class PostMethod {
     }
 
 
+    /**
+     *
+     * @param dataout
+     * @param complement
+     * @return
+     */
     public JSONObject SendtoServer(String dataout,String complement){
         JSONObject datain= new JSONObject();
         String res;
@@ -102,6 +113,13 @@ public class PostMethod {
     }
 
 
+    /**
+     *      * Method deprecated
+     * @param serverUrl
+     * @param json
+     * @return
+     * @throws IOException
+     */
     private String postToServerHTTPS(String serverUrl, String json) throws IOException {
         SchemeRegistry schemeRegistry = new SchemeRegistry();
         schemeRegistry.register(new Scheme("https",
@@ -135,6 +153,13 @@ public class PostMethod {
     /*HttpConnectionParams.setConnectionTimeout(httpparams, 45000);
     HttpConnectionParams.setSoTimeout(httpparams, 45000);*/
 
+    /**
+     *      * Method deprecated
+     * @param serverUrl
+     * @param json
+     * @return
+     * @throws Exception
+     */
     private String postToServer(String serverUrl, String json) throws Exception {
 
         Log.w("Data-Send: ", json);
@@ -170,6 +195,12 @@ public class PostMethod {
         return jsonResultStr;
     }
 
+    /**
+     * Method deprecated
+     * @param serverUrl
+     * @return
+     * @throws Exception
+     */
     public String getFromServer(String serverUrl) throws Exception {
 
         HttpParams httpparams = new BasicHttpParams();
@@ -198,6 +229,58 @@ public class PostMethod {
     }
 
 
+    /**
+     * Method in use
+     * @return
+     * @throws IOException
+     */
+    public String GetFromServerURL(String complement) throws IOException {
+
+
+        URL mURL= new URL(urlbase+complement);
+
+
+
+        HttpURLConnection urlConnection = (HttpURLConnection) mURL.openConnection();
+        urlConnection.setRequestProperty("Accept","application/json");
+        urlConnection.setRequestMethod("GET");
+
+        String jsonResultStr="";
+        try {
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+            Log.w("res",in.toString());
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+
+            StringBuilder total = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                total.append(line);
+            }
+
+            jsonResultStr=total.toString();
+
+        }finally{
+                urlConnection.disconnect();
+        }
+
+
+        return jsonResultStr;
+
+
+
+
+
+    }
+
+
+    /**
+     *      * Method deprecated
+     * @param serverUrl
+     * @return
+     */
     public JSONObject getFromServer2(String serverUrl){
 
         JSONObject data= new JSONObject();

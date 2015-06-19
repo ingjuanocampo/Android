@@ -26,4 +26,77 @@
 
     <color name="flatButtonPress">@color/gray</color>
     <color name="flatButtonUnPress">@android:color/white</color>
+
+
+    <color name="redToolbar">#FF1744</color>
+    <color name="redStatusBar">#D50000</color>
+    <color name="redTabBar">#FF5252</color>
+    <color name="redAccent">#FF8A80</color>
+
+
+
+    <color name="yellowToobar">#76FF03</color>
+    <color name="yellowStatusBar">#64DD17</color>
+    <color name="yellowAccent">#CCFF90</color>
+
+
+    <color name="pinkStatusBar">#880E4F</color>
+    <color name="pinkToobar">#AD1457</color>
+    <color name="pinkAccent">#C2185B</color>
+
+    <color name="purpleStatusBar">#7C4DFF</color>
+    <color name="purpleToobar">#651FFF</color>
+    <color name="purpleAccent">#6200EA</color>
+
+
+    <color name="purpleBStatusBar">#7B1FA2</color>
+    <color name="purpleBToobar">#6A1B9A</color>
+    <color name="purpleBAccent">#4A148C</color>
+
+
+    <color name="blueStatusBar">#304FFE</color>
+    <color name="blueToobar">#3D5AFE</color>
+    <color name="blueAccent">#536DFE</color>
+
+
+
+    <color name="blueCStatusBar">#2196F3</color>
+    <color name="blueCToobar">#42A5F5</color>
+    <color name="blueCAccent">#64B5F6</color>
+
+
+    <color name="cyanStatusBar">#006064</color>
+    <color name="cyanToobar">#00838F</color>
+    <color name="cyanAccent">#0097A7</color>
+
+
+    <color name="cyanBStatusBar">#00B8D4</color>
+    <color name="cyanBToobar">#00E5FF</color>
+    <color name="cyanBAccent">#18FFFF</color>
+
+
+    <color name="orangeStatusBar">#FF6D00</color>
+    <color name="orangeToobar">#FF9100</color>
+    <color name="orangeAccent">#FFAB40</color>
+
+
+
+    <color name="deeporangeStatusBar">#DD2C00</color>
+    <color name="deeporangeToobar">#FF3D00</color>
+    <color name="deeporangeAccent">#FF6E40</color>
+
+
+    <color name="brownStatusBar">#3E2723</color>
+    <color name="browToobar">#4E342E</color>
+    <color name="browAccent">#5D4037</color>
+
+
+    <color name="greyStatusBar">#212121</color>
+    <color name="greyToobar">#424242</color>
+    <color name="greyAccent">#616161</color>
+
+
+    <color name="greyIcon">#A4A4A4</color>
+
+
 </resources>

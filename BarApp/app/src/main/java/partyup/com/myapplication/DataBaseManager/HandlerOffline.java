@@ -20,7 +20,7 @@ public class HandlerOffline {
         this.mContext=context;
         this.mDatabaseOffline = new DatabaseControl(context, Definitions.POLFA_PATH,Definitions.DB_OFFLINE);
 
-    }
+    }//Marcelo alegre, josefina callejas, josefina balsar
 
 
 
@@ -28,7 +28,7 @@ public class HandlerOffline {
         Cursor dbCursor =null;
             try {
                 mDatabaseOffline.open();
-                dbCursor=mDatabaseOffline.select(Definitions.TABLET_AC_OFFLINE,Definitions.KEY_TIPO_AC, String.valueOf(type));
+                //dbCursor=mDatabaseOffline.select(Definitions.TABLET_AC_OFFLINE,Definitions.KEY_TIPO_AC, String.valueOf(type));
                      // dbCursor.getString(dbCursor.getColumnIndex(Definitions.KEY_ID_ROW));
             }catch (Exception e){
                 e.printStackTrace();
@@ -46,7 +46,7 @@ public class HandlerOffline {
 
         try {
             mDatabaseOffline.open();
-                noAcctionsOffile= mDatabaseOffline.countRegisters(Definitions.TABLET_AC_OFFLINE,"");
+              //  noAcctionsOffile= mDatabaseOffline.countRegisters(Definitions.TABLET_AC_OFFLINE,"");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -64,7 +64,7 @@ public class HandlerOffline {
 
         try {
             mDatabaseOffline.open();
-        noAcctionsOffile= mDatabaseOffline.countRegisters(Definitions.TABLET_AC_OFFLINE," where "+ Definitions.KEY_TIPO_AC+ " = '" + type +"'");
+        //noAcctionsOffile= mDatabaseOffline.countRegisters(Definitions.TABLET_AC_OFFLINE," where "+ Definitions.KEY_TIPO_AC+ " = '" + type +"'");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -88,11 +88,11 @@ public class HandlerOffline {
 
             ContentValues valuestoInsert= new ContentValues();
 
-            valuestoInsert.put(Definitions.KEY_DATA,Data);
-            valuestoInsert.put(Definitions.KEY_TOKEN,TokenId);
-            valuestoInsert.put(Definitions.KEY_TIPO_AC,TipoAc);
+            //valuestoInsert.put(Definitions.KEY_DATA,Data);
+            //valuestoInsert.put(Definitions.KEY_TOKEN,TokenId);
+            //valuestoInsert.put(Definitions.KEY_TIPO_AC,TipoAc);
 
-            id_row=(int)mDatabaseOffline.insertRegister(Definitions.TABLET_AC_OFFLINE,valuestoInsert);
+            //id_row=(int)mDatabaseOffline.insertRegister(Definitions.TABLET_AC_OFFLINE,valuestoInsert);
 
 
             mDatabaseOffline.close();
@@ -121,11 +121,11 @@ public class HandlerOffline {
 
             ContentValues valuestoInsert= new ContentValues();
 
-            valuestoInsert.put(Definitions.KEY_DATA,Data);
-            valuestoInsert.put(Definitions.KEY_ID_LOCAL,id_local);
-            valuestoInsert.put(Definitions.KEY_ID_SERVER,id_server);
+           // valuestoInsert.put(Definitions.KEY_DATA,Data);
+           // valuestoInsert.put(Definitions.KEY_ID_LOCAL,id_local);
+           // valuestoInsert.put(Definitions.KEY_ID_SERVER,id_server);
 
-            id_row=(int) mDatabaseOffline.insertRegister(Definitions.TABLET_ARCHIVOS,valuestoInsert);
+            //id_row=(int) mDatabaseOffline.insertRegister(Definitions.TABLET_ARCHIVOS,valuestoInsert);
 
 
             mDatabaseOffline.close();
@@ -148,7 +148,7 @@ public class HandlerOffline {
         try {
             mDatabaseOffline.open();
 
-            id= mDatabaseOffline.deleteRegister(Definitions.TABLET_AC_OFFLINE,Definitions.KEY_ID_ROW,Id_row);
+            //id= mDatabaseOffline.deleteRegister(Definitions.TABLET_AC_OFFLINE,Definitions.KEY_ID_ROW,Id_row);
 
             mDatabaseOffline.close();
         }catch (Exception e){
@@ -170,7 +170,7 @@ public class HandlerOffline {
 
         try {
             mDatabaseOffline.open();
-            noAcctionsOffile= mDatabaseOffline.countRegisters(Definitions.TABLET_ARCHIVOS,"");
+           // noAcctionsOffile= mDatabaseOffline.countRegisters(Definitions.TABLET_ARCHIVOS,"");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -192,9 +192,9 @@ public class HandlerOffline {
 
             ContentValues valuestoInsert= new ContentValues();
 
-            valuestoInsert.put(Definitions.KEY_ID_SERVER,id_server);
+            //valuestoInsert.put(Definitions.KEY_ID_SERVER,id_server);
 
-            id_row=(int) mDatabaseOffline.updateRegister(Definitions.TABLET_ARCHIVOS,valuestoInsert,Definitions.KEY_ID_LOCAL+" = '"+id_local+"'");
+           // id_row=(int) mDatabaseOffline.updateRegister(Definitions.TABLET_ARCHIVOS,valuestoInsert,Definitions.KEY_ID_LOCAL+" = '"+id_local+"'");
 
 
             mDatabaseOffline.close();
@@ -216,7 +216,7 @@ public class HandlerOffline {
         try {
             mDatabaseOffline.open();
 
-            id= mDatabaseOffline.deleteRegister(Definitions.TABLET_ARCHIVOS,Definitions.KEY_ID_ROW,Id_row);
+            //id= mDatabaseOffline.deleteRegister(Definitions.TABLET_ARCHIVOS,Definitions.KEY_ID_ROW,Id_row);
 
             mDatabaseOffline.close();
         }catch (Exception e){
@@ -236,7 +236,7 @@ public class HandlerOffline {
         Cursor dbCursor =null;
         try {
             mDatabaseOffline.open();
-            dbCursor=mDatabaseOffline.selectWhereDiferent(Definitions.TABLET_ARCHIVOS,Definitions.KEY_ID_SERVER, String.valueOf(0));
+           // dbCursor=mDatabaseOffline.selectWhereDiferent(Definitions.TABLET_ARCHIVOS,Definitions.KEY_ID_SERVER, String.valueOf(0));
             // dbCursor.getString(dbCursor.getColumnIndex(Definitions.KEY_ID_ROW));
         }catch (Exception e){
             e.printStackTrace();

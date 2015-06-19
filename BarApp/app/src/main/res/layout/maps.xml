@@ -4,6 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent">
 
+
+    <include layout="@layout/toolbar"></include>
+
     <fragment
         android:layout_height="match_parent" android:id="@+id/map"
         tools:context="partyup.com.myapplication.MapsActivity"

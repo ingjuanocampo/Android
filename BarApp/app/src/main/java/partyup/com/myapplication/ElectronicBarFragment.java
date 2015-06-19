@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,6 +18,11 @@ import java.util.ArrayList;
 import partyup.com.myapplication.Adapters.RecyclerAdapterBar;
 import partyup.com.myapplication.Interfaces.OnClickBarItem;
 import partyup.com.myapplication.Objects.Bar;
+import partyup.com.myapplication.Objects.Category;
+import partyup.com.myapplication.Provider.HandlerProvider;
+import partyup.com.myapplication.Provider.OnProviderResponse;
+import partyup.com.myapplication.utiles.Definitions;
+import partyup.com.myapplication.utiles.GsonConverter;
 
 
 /**
@@ -42,7 +48,9 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
     private OnFragmentInteractionListener mListener;
     private LinearLayoutManager mLayoutManager;
     private RecyclerAdapterBar mAdapter;
-    private ArrayList<Bar> mBars= new ArrayList<>();
+    private ProgressBar mProgressBar;
+    private ArrayList<Bar> mBars;
+    //private ArrayList<Bar> mBars= new ArrayList<>();
 
     /**
      * Use this factory method to create a new instance of
@@ -80,39 +88,49 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        mViewContainer= inflater.inflate(R.layout.fragment_electronic_bar, container, false);
+        if(savedInstanceState==null){
+            mViewContainer= inflater.inflate(R.layout.fragment_electronic_bar, container, false);
 
-        mRecyclerView= (RecyclerView)mViewContainer.findViewById(R.id.reyclerview_electronic_bars);
+            mRecyclerView= (RecyclerView)mViewContainer.findViewById(R.id.reyclerview_electronic_bars);
+            mProgressBar = (ProgressBar)mViewContainer.findViewById(R.id.progress_bar);
 
-        mRecyclerView.setHasFixedSize(true); //--> SOLO si el tamao no cmabia, mejora mucho el rendimiento.
+            mRecyclerView.setHasFixedSize(true); //--> SOLO si el tamao no cmabia, mejora mucho el rendimiento.
 
-        mLayoutManager = new LinearLayoutManager(mViewContainer.getContext());
+            mLayoutManager = new LinearLayoutManager(mViewContainer.getContext());
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        Bar mBar= new Bar();
-        mBar.setmAddress("ZONA T");
-        mBar.setmName("FONETICA BAR");
-        mBar.setmSchedule("7pm - 12am");
-
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-        mBars.add(mBar);
-
-        mAdapter= new RecyclerAdapterBar(mBars,this);
-
-        mRecyclerView.setAdapter(mAdapter);
+            mRecyclerView.setLayoutManager(mLayoutManager);
 
 
 
+            HandlerProvider.getProvider().setmContext(mViewContainer.getContext());
 
+            HandlerProvider.getProvider().getBars(new Category(), new OnProviderResponse() {
+                @Override
+                public void onSucessResponse(Object responce) {
+
+                   mBars = (ArrayList<Bar>) responce;
+                    mAdapter = new RecyclerAdapterBar(mBars, ElectronicBarFragment.this,mViewContainer.getContext());
+
+                    mRecyclerView.setAdapter(mAdapter);
+                    mProgressBar.setVisibility(View.GONE);
+
+                    mRecyclerView.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+
+        onSaveInstanceState(savedInstanceState);
 
         return mViewContainer;
+    }
+
+
+
+
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -142,10 +160,12 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
     @Override
     public void onClickBar(int pos) {
 
-        Toast.makeText(getActivity(),"presiono"+pos,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"presiono"+pos,Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(mViewContainer.getContext(),ActivityBarDetails.class);
-        startActivityForResult(intent,0);
+        Intent intent = new Intent(mViewContainer.getContext(),ActivitySiteDetails.class);
+        intent.putExtra(Definitions.Extra_1, GsonConverter.object2StringGson(mBars.get(pos)));
+
+        startActivityForResult(intent, 0);
 
     }
 

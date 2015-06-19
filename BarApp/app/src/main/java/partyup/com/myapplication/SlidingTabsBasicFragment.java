@@ -20,16 +20,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import partyup.com.myapplication.Objects.BarFragmentObject;
+import partyup.com.myapplication.Provider.HandlerProvider;
 import partyup.com.myapplication.views.SlidingTabLayout;
 
 
@@ -53,6 +52,7 @@ public class SlidingTabsBasicFragment extends Fragment {
      */
     private ViewPager mViewPager;
     private ArrayList<BarFragmentObject> mBarsType;
+    private View mViewContainer;
 
     /**
      * Inflates the {@link android.view.View} which will be displayed by this {@link android.support.v4.app.Fragment}, from the app's
@@ -62,15 +62,14 @@ public class SlidingTabsBasicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        mBarsType= new ArrayList<>();
-        mBarsType.add(new BarFragmentObject("Electronicos",new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("Romanticos", new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("Cross Over",new ElectronicBarFragment()));
-        mBarsType.add(new BarFragmentObject("Bares", new ElectronicBarFragment()));
+        if(mViewContainer==null){
+            mViewContainer=inflater.inflate(R.layout.fragment_sliding_tabs, container, false);
+            mBarsType= new ArrayList<>();
 
+            mBarsType= HandlerProvider.getProvider().getFragmentsBars();
+        }
 
-
-        return inflater.inflate(R.layout.fragment_sliding_tabs, container, false);
+        return mViewContainer;
     }
 
     // BEGIN_INCLUDE (fragment_onviewcreated)
@@ -78,7 +77,7 @@ public class SlidingTabsBasicFragment extends Fragment {
      * This is called after the {@link #onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)} has finished.
      * Here we can pick out the {@link android.view.View}s we need to configure from the content view.
      *
-     * We set the {@link android.support.v4.view.ViewPager}'s adapter to be an instance of {@link SamplePagerAdapter}. The
+     * We set the {@link android.support.v4.view.ViewPager}'s adapter to be an instance of {@link BarsPagerAdapter}. The
      * {@link SlidingTabLayout} is then given the {@link android.support.v4.view.ViewPager} so that it can populate itself.
      *
      * @param view View created in {@link #onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)}
@@ -88,7 +87,7 @@ public class SlidingTabsBasicFragment extends Fragment {
         // BEGIN_INCLUDE (setup_viewpager)
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         mViewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        mViewPager.setAdapter(new SamplePagerAdapter(getFragmentManager()));
+        mViewPager.setAdapter(new BarsPagerAdapter(getFragmentManager()));
         // END_INCLUDE (setup_viewpager)
 
         // BEGIN_INCLUDE (setup_slidingtablayout)
@@ -97,6 +96,8 @@ public class SlidingTabsBasicFragment extends Fragment {
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
         mSlidingTabLayout.setViewPager(mViewPager);
         mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.myPrimaryColor));
+        //SlidingTabLayout.TabColorizer
+        //mSlidingTabLayout.setCustomTabColorizer();
 
 
 
@@ -110,9 +111,9 @@ public class SlidingTabsBasicFragment extends Fragment {
      * this class is the {@link #getPageTitle(int)} method which controls what is displayed in the
      * {@link SlidingTabLayout}.
      */
-    class SamplePagerAdapter extends FragmentPagerAdapter {
+    class BarsPagerAdapter extends FragmentPagerAdapter {
 
-        public SamplePagerAdapter(FragmentManager fm) {
+        public BarsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 

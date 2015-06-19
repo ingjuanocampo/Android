@@ -60,7 +60,7 @@ public class ActivityBarDetails extends AppCompatActivity {
             public void onClickBar(int pos) {
 
             }
-        });
+        },this);
 
         recyclerView.setAdapter(mAdapter);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

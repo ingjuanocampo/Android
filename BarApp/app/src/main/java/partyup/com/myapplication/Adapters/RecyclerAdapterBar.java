@@ -1,13 +1,15 @@
 package partyup.com.myapplication.Adapters;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.text.method.CharacterPickerDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -20,11 +22,13 @@ import partyup.com.myapplication.R;
  */
 public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.PersonViewHolder>{
 
+    private final Context mContext;
     private ArrayList<Bar> mBars= new ArrayList<>();
     private static OnClickBarItem mActividad;
 
 
-    public RecyclerAdapterBar(ArrayList<Bar> bars, OnClickBarItem actividad){
+    public RecyclerAdapterBar(ArrayList<Bar> bars, OnClickBarItem actividad,Context context){
+        this.mContext=context;
         mActividad=actividad;
         this.mBars= bars;
 
@@ -40,9 +44,17 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
 
     @Override
     public void onBindViewHolder(RecyclerAdapterBar.PersonViewHolder holder, final int position) {
-        holder.personName.setText(mBars.get(position).getmName());
-        holder.personAge.setText(mBars.get(position).getmSchedule());
-        // personViewHolder.personPhoto.setImageResource(mBars.get(position).photoId);
+        holder.txtBarName.setText(mBars.get(position).getmName());
+        holder.txtHours.setText(mBars.get(position).getmSchedule());
+        holder.txtBarPrice.setText(mBars.get(position).getPrice());
+        holder.txtBarAddress.setText(mBars.get(position).getmAddress());
+        Picasso.with(mContext).
+                load(mBars.get(position).getImage_url())
+                .placeholder(R.drawable.keep_calm_and_still_loading_bk)
+                .into(holder.imgBarPhoto);
+
+
+        // ;
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,16 +71,21 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
-        TextView personName;
-        TextView personAge;
-        ImageView personPhoto;
+        TextView txtBarName;
+        TextView txtHours;
+        ImageView imgBarPhoto;
+        TextView txtBarPrice;
+        TextView txtBarAddress;
 
         PersonViewHolder(View itemView) {
             super(itemView);
             cv = (CardView)itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.id.bar_name);
-            personAge = (TextView)itemView.findViewById(R.id.bar_hour);
-            personPhoto = (ImageView)itemView.findViewById(R.id.bar_photo);
+            txtBarName = (TextView)itemView.findViewById(R.id.bar_name);
+            txtHours = (TextView)itemView.findViewById(R.id.bar_hour);
+            imgBarPhoto = (ImageView)itemView.findViewById(R.id.bar_photo);
+            txtBarPrice= (TextView)itemView.findViewById(R.id.bar_price);
+            txtBarAddress= (TextView)itemView.findViewById(R.id.bar_dir);
+
 
 
 

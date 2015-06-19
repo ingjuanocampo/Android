@@ -86,4 +86,214 @@
 
     </style>
 
+
+
+    <!-- ======================== Customs Themes ================== -->
+
+    <!-- Base application theme. -->
+    <style name="AppThemeYellow" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/yellowToobar</item>
+        <item name="colorAccent">@color/yellowAccent</item>
+        <item name="colorPrimaryDark">@color/yellowStatusBar</item>
+        <item name="android:textColor">@color/yellowToobar</item>
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:colorBackground">@android:color/white</item>
+
+
+
+    </style>
+
+
+    <style name="AppThemeRed" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/redToolbar</item>
+        <item name="colorAccent">@color/redAccent</item>
+        <item name="colorPrimaryDark">@color/redStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/redToolbar</item>
+
+
+
+    </style>
+
+    <style name="AppThemeCyan" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/cyanToobar</item>
+        <item name="colorAccent">@color/cyanAccent</item>
+        <item name="colorPrimaryDark">@color/cyanStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/cyanToobar</item>
+        <item name="android:colorButtonNormal">@color/cyanToobar</item>
+
+
+
+    </style>
+
+    <style name="AppThemeCyanB" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/cyanBToobar</item>
+        <item name="colorAccent">@color/cyanBAccent</item>
+        <item name="colorPrimaryDark">@color/cyanBStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/cyanBToobar</item>
+        <item name="android:colorButtonNormal">@color/cyanBToobar</item>
+
+
+
+
+    </style>
+
+    <style name="AppThemePink" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/pinkToobar</item>
+        <item name="colorAccent">@color/pinkAccent</item>
+        <item name="colorPrimaryDark">@color/pinkStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/pinkToobar</item>
+        <item name="android:colorButtonNormal">@color/pinkToobar</item>
+
+
+
+
+    </style>
+
+
+    <style name="AppThemePurple" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/purpleToobar</item>
+        <item name="colorAccent">@color/purpleAccent</item>
+        <item name="colorPrimaryDark">@color/purpleStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/purpleToobar</item>
+        <item name="android:colorButtonNormal">@color/purpleToobar</item>
+
+
+
+
+    </style>
+
+    <style name="AppThemePurpleB" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/purpleBToobar</item>
+        <item name="colorAccent">@color/purpleBAccent</item>
+        <item name="colorPrimaryDark">@color/purpleBStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/purpleBToobar</item>
+        <item name="android:colorButtonNormal">@color/purpleBToobar</item>
+
+
+
+
+    </style>
+
+
+
+    <style name="AppThemeBlue" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/blueToobar</item>
+        <item name="colorAccent">@color/blueAccent</item>
+        <item name="colorPrimaryDark">@color/blueStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/blueToobar</item>
+        <item name="android:colorButtonNormal">@color/blueToobar</item>
+
+
+
+
+    </style>
+
+
+    <style name="AppThemeBlueC" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/blueCToobar</item>
+        <item name="colorAccent">@color/blueCAccent</item>
+        <item name="colorPrimaryDark">@color/blueCStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/blueCToobar</item>
+        <item name="android:colorButtonNormal">@color/blueCToobar</item>
+
+
+
+
+    </style>
+
+
+
+    <style name="AppThemeOrange" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/orangeToobar</item>
+        <item name="colorAccent">@color/orangeAccent</item>
+        <item name="colorPrimaryDark">@color/orangeStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/orangeToobar</item>
+        <item name="android:colorButtonNormal">@color/orangeToobar</item>
+
+
+
+
+    </style>
+
+    <style name="AppThemeDeepOrange" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/deeporangeToobar</item>
+        <item name="colorAccent">@color/deeporangeAccent</item>
+        <item name="colorPrimaryDark">@color/deeporangeStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/deeporangeToobar</item>
+        <item name="android:colorButtonNormal">@color/deeporangeToobar</item>
+
+
+
+
+    </style>
+
+
+    <style name="AppThemeBrown" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/browToobar</item>
+        <item name="colorAccent">@color/browAccent</item>
+        <item name="colorPrimaryDark">@color/brownStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/browToobar</item>
+        <item name="android:colorButtonNormal">@color/browToobar</item>
+
+
+
+
+
+    </style>
+
+
+
+    <style name="AppThemeGrey" parent="Theme.AppCompat.NoActionBar"
+
+        >
+        <item name="colorPrimary">@color/greyToobar</item>
+        <item name="colorAccent">@color/greyAccent</item>
+        <item name="colorPrimaryDark">@color/greyStatusBar</item>
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:textColor">@color/greyToobar</item>
+        <item name="android:colorButtonNormal">@color/greyToobar</item>
+
+
+
+
+    </style>
+
+
 </resources>

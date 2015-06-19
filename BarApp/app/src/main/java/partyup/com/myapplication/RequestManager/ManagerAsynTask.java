@@ -4,59 +4,78 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import partyup.com.myapplication.utiles.Definitions;
+import partyup.com.myapplication.utiles.GsonConverter;
 
 
 /**
  * Created by Juan Manuel on 23/12/2014.
  */
-public class ManagerAsynTask extends AsyncTask<String, Void, JSONObject > {
+public class ManagerAsynTask extends AsyncTask<String, Void, String > {
 
-    private ServicesConsumer actividad;
+    private ServicesConsumer consumer;
     private String recibido;
     private JSONObject resultadoPost;
     public JSONObject resultGet;
     private String complement="";
     private Context contexto;
-    private String Type= Definitions.POST; //By defualt
+    private String Type= Definitions.GET; //By defualt
+    private String result;
 
 
+    /**
+     *
+     * @param params
+     * 1. Type [POST or GET]
+     * 2. Url Complement
+     * 3. Data if there are POST
+     * @return
+     */
     @Override
-    protected JSONObject doInBackground(String... params) {
+    protected String doInBackground(String... params) {
         PostMethod server = new PostMethod();
-        this.recibido=params[0];
+        this.Type=params[0];
         this.complement=params[1];
 
-        try {
-            this.Type=params[2];
 
-        }catch (Exception e){
+        if (Type.equals(Definitions.GET))
+            /*resultadoPost =*/
+            try {//Get Here
+                result=server.GetFromServerURL(complement); //
+                // GsonConverter.gson2ArrayBars(result);
 
-        }
-
-        if (Type.equals(Definitions.POST))
-            resultadoPost =server.SendtoServer(recibido,complement);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         else {
             try {
-                resultGet=server.getFromServer2(PostMethod.urlbase+"SAC3SERVICES/SQL/POLFA2.db"); //getFromServer("http://192.168.1.113/SICON/SQL/POLFA2.db");
+               //this.out=params[2];
+
+                //POST here
+                //resultGet=server.getFromServer2(PostMethod.urlbase+"SAC3SERVICES/SQL/POLFA2.db"); //getFromServer("http://192.168.1.113/SICON/SQL/POLFA2.db");
                 //FileHelper mFile= new FileHelper(contexto,Definitions.DOMINIOS);
                 //mFile.saveIntoFile(resultGet);
 
-                return resultGet;
+                //return resultGet;
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
 
-        return resultadoPost;
+        return result;
     }
 
-    public ManagerAsynTask(ServicesConsumer actividad, Context contexto)
+    public ManagerAsynTask(ServicesConsumer consumer, Context contexto)
     {
-        this.actividad = actividad;
+        this.consumer = consumer;
         this.recibido = null;
         this.resultadoPost = null;
         this.contexto = contexto;
@@ -69,10 +88,10 @@ public class ManagerAsynTask extends AsyncTask<String, Void, JSONObject > {
     }
 
     @Override
-    protected void onPostExecute(JSONObject result) {
+    protected void onPostExecute(String result) {
         Log.i("Desde: ", "onPostManagerAsyn");
 
-        actividad.processResponce(result);//(this.resultadoPost);
+        consumer.processResponce(result);//(this.resultadoPost);
         super.onPostExecute(result);
     }
 

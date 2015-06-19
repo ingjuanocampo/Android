@@ -28,7 +28,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static String DB_PATH = ""; // Context.getFilesDir().getPath()
     private SQLiteDatabase baseDatos;
     private static int state = -1;
-    private static final String DATABASE_TABLE = Definitions.TABLE_DOMINIOS_POLFA;
+    private static final String DATABASE_TABLE ="";  //Definitions.TABLE_DOMINIOS_POLFA;
 
     public DBHelper(Context context,String path,String name) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -82,7 +82,7 @@ public class DBHelper extends SQLiteOpenHelper {
             checkDB = SQLiteDatabase.openDatabase(myPath, null,
                     SQLiteDatabase.OPEN_READONLY);
            Map<String,String > map = checkDB.getSyncedTables();
-            if(map.containsKey(Definitions.TABLE_DOMINIOS_POLFA))
+            if(map.containsKey(""))//Definitions.TABLE_DOMINIOS_POLFA))
                 Log.w("Si", "");
         } catch (SQLiteException e) {// database does't exist yet.
             e.printStackTrace();

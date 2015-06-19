@@ -25,11 +25,11 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="192dp"
                 >
             <ImageView
-                android:src="@drawable/nightclub"
-                android:layout_width="wrap_content"
+                android:src="@drawable/keep_calm_and_still_loading_bk"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/bar_photo"
                 android:scaleType="centerCrop"
