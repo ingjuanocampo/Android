@@ -5,6 +5,8 @@
     <item
         android:id="@+id/menu_search"
         android:orderInCategory="1"
-        android:title="Menu item"
-        app:showAsAction="never"/>
+        android:title="Search"
+        app:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_search"
+        />
 </menu>
