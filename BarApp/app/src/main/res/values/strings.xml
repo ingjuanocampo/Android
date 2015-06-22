@@ -23,5 +23,6 @@
     <string name="hello_world">Hello world!</string>
 
     <string name="title_activity_activity_site_details">ActivitySiteDetails</string>
+    <string name="title_activity_search_options">Busqueda</string>
 
 </resources>

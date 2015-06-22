@@ -2,6 +2,8 @@ package partyup.com.myapplication;
 
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
@@ -14,15 +16,20 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.internal.ne;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 import partyup.com.myapplication.Adapters.AdapterViewPagerTypeBars;
 import partyup.com.myapplication.Adapters.TabPagerAdapter;
@@ -47,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
     //private ArrayList<BarFragmentObject> mBarsType;
 
     private Provider mProvider;
+    private MenuItem btnSearch
+            ;
 
 
     @Override
@@ -232,11 +241,13 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
 
+            btnSearch = menu.getItem(0);
+
 
             restoreActionBar();
             return true;
         }
-        return super.onCreateOptionsMenu(menu);
+        return true; //super.onCreateOptionsMenu(menu);
     }
 
 
@@ -318,9 +329,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+
+        }else if (btnSearch.getItemId()==R.id.action_search){
+            Intent searchIntent= new Intent(this,SearchOptionsActivity.class);
+
+            startActivityForResult(searchIntent,0);
+
         }
 
         return super.onOptionsItemSelected(item);
