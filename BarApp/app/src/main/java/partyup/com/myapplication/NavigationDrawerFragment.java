@@ -159,13 +159,13 @@ public class NavigationDrawerFragment extends Fragment implements NavigationDraw
 
     public List<NavigationItem> getMenu() {
         List<NavigationItem> items = new ArrayList<NavigationItem>();
-        items.add(new NavigationItem("Clubs/Bares/Discos", getResources().getDrawable(R.drawable.music)));
-        items.add(new NavigationItem("Mapa", getResources().getDrawable(R.drawable.map)));
-        items.add(new NavigationItem("Preferencias", getResources().getDrawable(R.drawable.preferences)));
-        items.add(new NavigationItem("Ayuda", getResources().getDrawable(R.drawable.help)));
-        items.add(new NavigationItem("Crear Cuenta", getResources().getDrawable(R.drawable.singin)));
-        items.add(new NavigationItem("Compartir APP", getResources().getDrawable(R.drawable.share)));
-        items.add(new NavigationItem("Acerca de PartyUP", getResources().getDrawable(R.drawable.about)));
+        items.add(new NavigationItem("Sites", getResources().getDrawable(R.drawable.ic_local_bar_white_24dp)));
+        items.add(new NavigationItem("Mapa", getResources().getDrawable(R.drawable.ic_map_white_24dp)));
+        items.add(new NavigationItem("Ayuda", getResources().getDrawable(R.drawable.ic_help_white_24dp)));
+        items.add(new NavigationItem("Settings", getResources().getDrawable(R.drawable.ic_settings_white_24dp)));
+        items.add(new NavigationItem("Crear Cuenta", getResources().getDrawable(R.drawable.ic_account_box_white_24dp)));
+        items.add(new NavigationItem("Compartir APP", getResources().getDrawable(R.drawable.abc_ic_menu_share_mtrl_alpha)));
+        items.add(new NavigationItem("Acerca de PartyUP", getResources().getDrawable(R.drawable.ic_info_white_24dp)));
 
         return items;
     }

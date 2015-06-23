@@ -38,6 +38,7 @@ import partyup.com.myapplication.Objects.Category;
 import partyup.com.myapplication.Provider.HandlerProvider;
 import partyup.com.myapplication.Provider.Provider;
 import partyup.com.myapplication.Provider.ProviderType;
+import partyup.com.myapplication.views.HelpActivity;
 import partyup.com.myapplication.views.SlidingTabLayout;
 
 
@@ -261,12 +262,18 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
                 if (oldFargment!=null)
                     fragmentTransaction.remove(oldFargment);
+
                 break;
             case 1:
                 //fragmentExecuter(fragmentMap);
                 Intent intent = new Intent(this,MapsActivity.class);
                 startActivityForResult(intent,0);
 
+                break;
+
+            case 2:
+                Intent intentHelp = new Intent(this,HelpActivity.class);
+                startActivityForResult(intentHelp,0);
                 break;
 
 
@@ -331,10 +338,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
 
-        }else if (btnSearch.getItemId()==R.id.action_search){
+        }else */if (btnSearch.getItemId()==id){
             Intent searchIntent= new Intent(this,SearchOptionsActivity.class);
 
             startActivityForResult(searchIntent,0);

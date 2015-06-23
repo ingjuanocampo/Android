@@ -71,6 +71,15 @@
 
     </style>
 
+    <style name="TextBoldWhite">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+
+
+
+    </style>
+
     <style name="TextNormalGreen">
     <item name="android:textColor">@color/green_light</item>
     <item name="android:textStyle">normal</item>
@@ -302,6 +311,13 @@
 
 
     </style>
+
+    <style name="ToolTips">
+        <item name="android:src">@drawable/ic_more_vert_white_24dp</item>
+        <item name="android:background">@drawable/ic_more_vert_white_24dp</item>
+    </style>
+
+
 
 
 </resources>

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -41,7 +43,9 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
     @Override
     public void onBindViewHolder(NavigationDrawerAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.textView.setText(mData.get(i).getText());
-        viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(mData.get(i).getDrawable(), null, null, null);
+        //viewHolder.textView.setCompoundDrawablesWithIntrinsicBounds(mData.get(i).getDrawable(), null, null, null);
+
+        viewHolder.imgIcon.setImageDrawable(mData.get(i).getDrawable());
 
         viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
                                                    @Override
@@ -64,7 +68,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
                                                    }
                                                }
         );
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        viewHolder.linearRow.setOnClickListener(new View.OnClickListener() {
                                                    @Override
                                                    public void onClick(View v) {
                                                        if (mNavigationDrawerCallbacks != null)
@@ -75,7 +79,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
         //TODO: selected menu position, change layout accordingly
         if (mSelectedPosition == i || mTouchedPosition == i) {
-            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.selected_gray));
+            viewHolder.itemView.setBackgroundColor(viewHolder.itemView.getContext().getResources().getColor(R.color.myAccentColor));
         } else {
             viewHolder.itemView.setBackgroundColor(Color.TRANSPARENT);
         }
@@ -104,10 +108,15 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+        public ImageView imgIcon;
+        public LinearLayout linearRow;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
+            imgIcon= (ImageView)itemView.findViewById(R.id.img_icon);
             textView = (TextView) itemView.findViewById(R.id.item_name);
+            linearRow= (LinearLayout)itemView.findViewById(R.id.linear_drawer_row);
         }
     }
 }

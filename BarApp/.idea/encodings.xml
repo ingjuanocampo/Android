@@ -5,8 +5,8 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/Adapters/AdapterListDetails.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/Objects/ColorsTheme.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/Objects/ItemDetails.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_activity_site_details.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/view_schedule.xml" charset="UTF-8" />
   </component>
 </project>
-
