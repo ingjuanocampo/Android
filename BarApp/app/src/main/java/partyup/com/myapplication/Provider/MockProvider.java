@@ -6,6 +6,7 @@ import android.util.Log;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import partyup.com.myapplication.Objects.Bar;
@@ -221,6 +222,25 @@ public class MockProvider extends ProviderBase {
 
 
         activity.onSucessResponse(mBars);
+
+    }
+
+    @Override
+    public void getCitiesStrings(OnProviderResponse activity) {
+
+        List<String> mString = new ArrayList<>();
+
+        mString.add("Bogota");
+        mString.add("Medellin");
+        mString.add("Cali");
+        mString.add("Armenia");
+        mString.add("Santa Marta");
+        mString.add("Barranquilla");
+
+
+
+        activity.onSucessResponse(mString);
+
 
     }
 

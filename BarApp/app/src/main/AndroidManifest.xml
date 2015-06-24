@@ -81,14 +81,6 @@
                 android:name="android.app.default_searchable"
                 android:value=".SearchResultsActivity" />
         </activity>
-        <activity
-            android:name=".views.HelpActivity"
-            android:label="@string/title_activity_help"
-            android:parentActivityName=".MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="partyup.com.myapplication.MainActivity" />
-        </activity>
     </application>
 
 </manifest>

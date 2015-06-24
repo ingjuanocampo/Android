@@ -18,6 +18,8 @@ public abstract class ProviderBase {
 
     public abstract void getBars(Category category,OnProviderResponse activity);
 
+    public abstract void getCitiesStrings(OnProviderResponse activity);
+
     public ArrayList<BarFragmentObject> getFragmentsBars(){
 
         ArrayList<BarFragmentObject> mBarsType = new ArrayList<>();
@@ -39,4 +41,7 @@ public abstract class ProviderBase {
     public Context getmContext() {
         return mContext;
     }
+
+
+
 }

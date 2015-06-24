@@ -2,48 +2,30 @@ package partyup.com.myapplication;
 
 
 import android.app.Activity;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.internal.ne;
-
-import java.util.ArrayList;
-import java.util.zip.Inflater;
-
-import partyup.com.myapplication.Adapters.AdapterViewPagerTypeBars;
 import partyup.com.myapplication.Adapters.TabPagerAdapter;
-import partyup.com.myapplication.Objects.BarFragmentObject;
-import partyup.com.myapplication.Objects.Category;
-import partyup.com.myapplication.Provider.HandlerProvider;
 import partyup.com.myapplication.Provider.Provider;
-import partyup.com.myapplication.Provider.ProviderType;
-import partyup.com.myapplication.views.HelpActivity;
 import partyup.com.myapplication.views.SlidingTabLayout;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerCallbacks,ElectronicBarFragment.OnFragmentInteractionListener,
-        RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener,FragmentCrossoverBar.OnFragmentInteractionListener {
+        RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener,FragmentCrossoverBar.OnFragmentInteractionListener,FragmentHelp.OnFragmentInteractionListener
+        ,FragmentSetting.OnFragmentInteractionListener,FragmentAbout.OnFragmentInteractionListener{
 
     //private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -55,8 +37,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
     //private ArrayList<BarFragmentObject> mBarsType;
 
     private Provider mProvider;
-    private MenuItem btnSearch
-            ;
+    private MenuItem btnSearch;
+    private SlidingTabsBasicFragment fragment;
+    private FragmentHelp mFragmentHelp;
+    private FragmentSetting mFragmentSetting;
+    private FragmentAbout mFragmentAbout;
 
 
     @Override
@@ -68,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
         //fragmentBars= new ViewPageTypeBars();
 
         //as
-        fragmentMap = new FragmentMap();
 
         //mToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
 
@@ -102,10 +86,16 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
 
         if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            SlidingTabsBasicFragment fragment = new SlidingTabsBasicFragment();
-            transaction.replace(R.id.container, fragment);
-            transaction.commit();
+           // FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            fragment = new SlidingTabsBasicFragment();
+            mFragmentHelp= new FragmentHelp();
+            fragmentMap = new FragmentMap();
+            mFragmentSetting= new FragmentSetting();
+            mFragmentAbout= new FragmentAbout();
+
+            fragmentExecuter(fragment);
+           // transaction.replace(R.id.container, fragment);
+           // transaction.commit();
         }
     }
 
@@ -259,21 +249,29 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
         switch (position){
             case 0:
-
-                if (oldFargment!=null)
-                    fragmentTransaction.remove(oldFargment);
+                fragmentExecuter(fragment);
+                //if (oldFargsadment!=null)
+                //    fragmentTransaction.remove(oldFargment);
 
                 break;
             case 1:
-                //fragmentExecuter(fragmentMap);
+                fragmentExecuter(fragmentMap);
                 Intent intent = new Intent(this,MapsActivity.class);
                 startActivityForResult(intent,0);
 
                 break;
 
             case 2:
-                Intent intentHelp = new Intent(this,HelpActivity.class);
-                startActivityForResult(intentHelp,0);
+                //Intent intentHelp = new Intent(this,HelpActivity.class);
+                //startActivityForResult(intentHelp,0);
+                fragmentExecuter(mFragmentHelp);
+                break;
+            case 3:
+                fragmentExecuter(mFragmentSetting);
+
+                break;
+            case 5:
+                fragmentExecuter(mFragmentAbout);
                 break;
 
 
@@ -288,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
     Fragment oldFargment;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-  /*  private void fragmentExecuter(Fragment fragment){
+    private void fragmentExecuter(Fragment fragment){
 
 
         fragmentManager = getSupportFragmentManager();
@@ -319,7 +317,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
         }
 
-    }*/
+    }
 
     @Override
     public void onBackPressed() {

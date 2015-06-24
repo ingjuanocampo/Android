@@ -48,4 +48,11 @@ public class ServerProvider extends ProviderBase {
 
 
     }
+
+    @Override
+    public void getCitiesStrings(OnProviderResponse activity) {
+
+
+
+    }
 }
