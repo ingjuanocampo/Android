@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/margin_cardview">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_info_white_24dp"
+                    android:tint="?attr/colorAccent"/>
+            <TextView
+                android:padding="@dimen/margin_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Elige las opciones de filtrado que desees aplicar a tu busqueda"
+                style="@style/TextPrimaryColorMeduim"/>
+            </LinearLayout>
+
+
+            <include layout="@layout/view_divider"></include>
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextPrimaryColorMeduim"
+                android:text="Zona de la cuidad"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spn_city_filter"
+                ></Spinner>
+
+
+
+            <include layout="@layout/view_divider"></include>
+
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextPrimaryColorMeduim"
+                android:text="Cover ?"/>
+
+            <Switch
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/stw_cover"
+                ></Switch>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cambiar de Cuidad?"
+                android:textColor="@color/redToolbar"
+                />
+
+            <include layout="@layout/view_divider"></include>
+
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextPrimaryColorMeduim"
+                android:text="Tipo de Site"/>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spn_site_filter"
+                ></Spinner>
+
+
+            <include layout="@layout/view_divider"></include>
+
+            <include layout="@layout/view_divider"></include>
+
+
+            <TextView
+                android:layout_marginTop="@dimen/margin_cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextPrimaryColorMeduim"
+                android:text="Tipo Musica"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/screen_background_light_transparent"
+                android:text="Toca para seleccionar la musica"
+                ></Button>
+
+
+            <include layout="@layout/view_divider"></include>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    app:layout_anchor="@id/appbar"
+                    app:layout_anchorGravity="bottom|right"
+                    android:elevation="3dp"
+                    android:src="@drawable/ic_check_black_24dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"/>
+
+
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    app:layout_anchor="@id/appbar"
+                    app:layout_anchorGravity="bottom|right"
+                    android:elevation="3dp"
+                    android:src="@drawable/ic_check_black_24dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"/>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>
