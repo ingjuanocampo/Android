@@ -62,6 +62,17 @@
 
 
     </style>
+
+    <style name="TextSmallGray">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/text_small</item>
+
+
+
+    </style>
+
+
     <style name="TextNormalWhite">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">normal</item>
@@ -103,6 +114,22 @@
 
     </style>
 
+
+    <style name="TextPrimaryColorMeduim">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+
+
+    </style>
+
+    <style name="TextAccentColorMeduim">
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+
+
+    </style>
 
 
     <!-- ======================== Customs Themes ================== -->

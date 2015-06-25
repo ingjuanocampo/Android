@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import partyup.com.myapplication.Interfaces.OnDocHelpChange;
 import partyup.com.myapplication.R;
 
 /**
@@ -15,10 +17,15 @@ import partyup.com.myapplication.R;
 public class PageAdapterHelp extends PagerAdapter {
 
     private LayoutInflater inflater;
+    private LinearLayout mLinearDocs;
+    private ImageView imgDoc;
+    private OnDocHelpChange mOnchangeDocState;
 
-    private int [] ImagesR= {R.drawable.nightclub,R.drawable.bogota_night};
-    public PageAdapterHelp (LayoutInflater layoutInflater){
+    private int [] ImagesR;
+    public PageAdapterHelp (LayoutInflater layoutInflater, int[] data, OnDocHelpChange callback){
+        this.ImagesR=data;
         inflater=layoutInflater;
+        mOnchangeDocState=callback;
     }
 
     /**
@@ -67,12 +74,15 @@ public class PageAdapterHelp extends PagerAdapter {
 
         ImageView img= (ImageView)view.findViewById(R.id.img_help);
         img.setImageResource(ImagesR[position]);
+        mLinearDocs = (LinearLayout)view.findViewById(R.id.linear_docs);
 
-
+        //mOnchangeDocState.onDockChange(get);
 
         // Return the View
         return view;
     }
+
+
 
     /**
      * Destroy the item from the {@link ViewPager}. In our case this is simply removing the
