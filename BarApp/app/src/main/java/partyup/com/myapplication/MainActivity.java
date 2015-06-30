@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
         //HandlerProvider.getProvider().setmContext(this);
 
 
-        if (savedInstanceState == null) {
+        //if (savedInstanceState == null) {
            // FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             fragment = new SlidingTabsBasicFragment();
             mFragmentHelp= new FragmentHelp();
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
             fragmentExecuter(fragment);
            // transaction.replace(R.id.container, fragment);
            // transaction.commit();
-        }
+        //}
     }
 
 
@@ -249,13 +249,14 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
         switch (position){
             case 0:
+
                 fragmentExecuter(fragment);
                 //if (oldFargsadment!=null)
                 //    fragmentTransaction.remove(oldFargment);
 
                 break;
             case 1:
-                fragmentExecuter(fragmentMap);
+                //fragmentExecuter(fragmentMap);
                 Intent intent = new Intent(this,MapsActivity.class);
                 startActivityForResult(intent,0);
 

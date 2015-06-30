@@ -52,6 +52,9 @@ public class MockProvider extends ProviderBase {
 
         mBar.setImage_url("https://www.saproto.nl/wordpress/wp-content/uploads/2015/04/Party-11.jpg");
 
+        mBar.setCordinates("4.676464", "-74.053347");
+
+
         ArrayList<Bar> mBars= new ArrayList<>();
         mBars.add(mBar);
 
@@ -67,6 +70,8 @@ public class MockProvider extends ProviderBase {
         mBar.setMusicStyle("#Electronica #Reggetoon #Salsa #Variado");
         mBar.setDescription("Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.");
         mBar.setImage_url("http://www.boolalacostumes.com/wp-content/uploads/2013/09/shopping-party-dance.jpg");
+
+        mBar.setCordinates("4.671160", "-74.057532");
 
 
         mBars.add(mBar);
@@ -84,6 +89,7 @@ public class MockProvider extends ProviderBase {
         mBar.setMusicStyle("#Electronica #Reggetoon #Salsa #Variado");
         mBar.setDescription("Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.");
         mBar.setImage_url("http://atlas.marcohern.com/img/bar-headers/bbc-salitre-hd.png");
+        mBar.setCordinates(".670433", "-74.056287");
 
 
         mBars.add(mBar);
@@ -102,6 +108,7 @@ public class MockProvider extends ProviderBase {
         mBar.setDescription("Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.");
         mBar.setImage_url("https://www.saproto.nl/wordpress/wp-content/uploads/2015/04/Party-11.jpg");
 
+        mBar.setCordinates("4.671160", "-74.057532");
 
         mBars.add(mBar);
         mBar= new Bar();
@@ -119,6 +126,10 @@ public class MockProvider extends ProviderBase {
         mBar.setDescription("Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.");
         mBar.setImage_url("http://www.bearsbaripswich.co.uk/wp-content/uploads/2015/01/hen-party-ideas.jpg");
 
+
+        mBar.setCordinates("4.676335", "-74.052146");
+
+
         mBars.add(mBar);
         mBar= new Bar();
 
@@ -135,6 +146,9 @@ public class MockProvider extends ProviderBase {
         mBar.setDescription("Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.");
 
         mBar.setImage_url("http://howtoparty.in/wp-content/uploads/2015/01/party-image.jpg");
+
+        mBar.setCordinates("4.675138", "-74.050730");
+
 
         mBars.add(mBar);
 
@@ -156,6 +170,8 @@ public class MockProvider extends ProviderBase {
         mBar.setImage_url("https://marcelasarmiento.files.wordpress.com/2014/12/cerveza2.jpg");
 
 
+        mBar.setCordinates("4.674710", "-74.047468");
+
 
         mBars.add(mBar);
 
@@ -174,6 +190,9 @@ public class MockProvider extends ProviderBase {
         mBar.setDescription("Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.");
 
         mBar.setImage_url("http://www.lets-party.in/wp-content/uploads/2015/03/slide1.jpg");
+
+
+        mBar.setCordinates("4.672636", "-74.048519");
 
 
         mBars.add(mBar);
@@ -195,6 +214,8 @@ public class MockProvider extends ProviderBase {
 
         mBar.setImage_url("http://www.lets-party.in/wp-content/uploads/2015/03/slide1.jpg");
 
+        mBar.setCordinates("4.674004", "-74.051609");
+
 
         mBars.add(mBar);
 
@@ -213,6 +234,8 @@ public class MockProvider extends ProviderBase {
         mBar.setDescription("Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.");
 
         mBar.setImage_url("http://www.freevector.com/site_media/preview_images/FreeVector-Disco-Party-Footage.jpg");
+
+        mBar.setCordinates("4.668487", "-74.054120");
 
 
         mBars.add(mBar);

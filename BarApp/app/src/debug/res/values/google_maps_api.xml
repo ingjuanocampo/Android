@@ -9,8 +9,17 @@ https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend
     You can also add your credentials to an existing key, using this line:
     3F:1C:F4:F5:97:43:7E:AC:3E:B3:56:72:E3:E1:39:D6:C9:5F:13:18;partyup.com.myapplication
 
+E9:5D:6C:1D:2E:1D:76:D3:CC:74:28:CE:CA:E4:5C:77:EC:B9:A8:09;partyup.com.myapplication- old
+
+
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
+
+
+    THE COMMAND if want to see SHA1 on console is:
+    C:\Users\juan.ocampo>keytool -list -v -keystore C:\Users\juan.ocampo\.an
+bug.keystore -alias androiddebugkey -storepass android -keypass android
+
     -->
     <string name="google_maps_key" translatable="false" templateMergeStrategy="preserve">
         AIzaSyCnjzDPjjD090uOkuLX36m1-vwGnQ9aiAM

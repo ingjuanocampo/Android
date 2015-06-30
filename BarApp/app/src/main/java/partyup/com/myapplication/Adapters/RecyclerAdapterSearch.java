@@ -18,6 +18,7 @@ import partyup.com.myapplication.Interfaces.OnClickBarItem;
 import partyup.com.myapplication.Objects.Bar;
 import partyup.com.myapplication.Objects.ColorsTheme;
 import partyup.com.myapplication.R;
+import partyup.com.myapplication.utiles.AndroidUtiles;
 
 /**
  * Created by juan.ocampo on 23/06/2015.
@@ -55,7 +56,7 @@ public class RecyclerAdapterSearch extends RecyclerView.Adapter<RecyclerAdapterS
                 .placeholder(R.drawable.keep_calm_and_still_loading_bk)
                 .into(holder.imgBarPhoto);
 
-        holder.lnCardview.setBackgroundColor(getColorId(ColorsTheme.valueOf(mBars.get(position).getColor())));
+        holder.lnCardview.setBackgroundColor(AndroidUtiles.getColorId(ColorsTheme.valueOf(mBars.get(position).getColor()),mContext));
 
 
         // ;
@@ -67,42 +68,7 @@ public class RecyclerAdapterSearch extends RecyclerView.Adapter<RecyclerAdapterS
         });
     }
 
-    private int getColorId(ColorsTheme colorsTheme) {
 
-        switch (colorsTheme){
-            case RED:
-                return mContext.getResources().getColor(R.color.redToolbar);
-            case GREEN:
-                return mContext.getResources().getColor(R.color.yellowToobar);
-            case PINK:
-                return mContext.getResources().getColor(R.color.pinkToobar);
-            case PURPLE:
-                return mContext.getResources().getColor(R.color.purpleToobar);
-            case PURPLE_B:
-                return mContext.getResources().getColor(R.color.purpleBToobar);
-            case BLUE:
-                return mContext.getResources().getColor(R.color.blueToobar);
-            case BLUE_C:
-                return mContext.getResources().getColor(R.color.blueCToobar);
-            case CYAN:
-                return mContext.getResources().getColor(R.color.cyanToobar);
-            case CYAN_B:
-                return mContext.getResources().getColor(R.color.cyanBToobar);
-            case ORANGE:
-                return mContext.getResources().getColor(R.color.orangeToobar);
-            case DEEP_ORANGE:
-                return mContext.getResources().getColor(R.color.deeporangeToobar);
-            case BROWN:
-                return mContext.getResources().getColor(R.color.browToobar);
-            case GRAY:
-                return mContext.getResources().getColor(R.color.greyToobar);
-            default:
-                return mContext.getResources().getColor(R.color.browToobar);
-
-        }
-
-
-    }
 
     @Override
     public int getItemCount() {

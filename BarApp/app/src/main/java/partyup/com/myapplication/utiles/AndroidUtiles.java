@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
@@ -20,6 +22,9 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import partyup.com.myapplication.Objects.ColorsTheme;
+import partyup.com.myapplication.R;
 
 
 /**
@@ -155,7 +160,7 @@ public class AndroidUtiles {
      *
      * @param view
      */
-   public void keyBoardHide(View view){
+   public static  void keyBoardHide(View view,Context mContex){
 
        InputMethodManager imm = (InputMethodManager)mContex.getSystemService(
                Context.INPUT_METHOD_SERVICE);
@@ -420,6 +425,58 @@ public class AndroidUtiles {
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
+
+    public static Bitmap drawableToBitmap (Drawable drawable) {
+
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable)drawable).getBitmap();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888 );
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
+    }
+
+    public static int getColorId(ColorsTheme colorsTheme,Context mContext) {
+
+        switch (colorsTheme){
+            case RED:
+                return mContext.getResources().getColor(R.color.redToolbar);
+            case GREEN:
+                return mContext.getResources().getColor(R.color.yellowToobar);
+            case PINK:
+                return mContext.getResources().getColor(R.color.pinkToobar);
+            case PURPLE:
+                return mContext.getResources().getColor(R.color.purpleToobar);
+            case PURPLE_B:
+                return mContext.getResources().getColor(R.color.purpleBToobar);
+            case BLUE:
+                return mContext.getResources().getColor(R.color.blueToobar);
+            case BLUE_C:
+                return mContext.getResources().getColor(R.color.blueCToobar);
+            case CYAN:
+                return mContext.getResources().getColor(R.color.cyanToobar);
+            case CYAN_B:
+                return mContext.getResources().getColor(R.color.cyanBToobar);
+            case ORANGE:
+                return mContext.getResources().getColor(R.color.orangeToobar);
+            case DEEP_ORANGE:
+                return mContext.getResources().getColor(R.color.deeporangeToobar);
+            case BROWN:
+                return mContext.getResources().getColor(R.color.browToobar);
+            case GRAY:
+                return mContext.getResources().getColor(R.color.greyToobar);
+            default:
+                return mContext.getResources().getColor(R.color.browToobar);
+
+        }
+
+
+    }
+
 
 
 }

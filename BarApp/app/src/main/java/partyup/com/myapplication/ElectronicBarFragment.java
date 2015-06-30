@@ -88,7 +88,7 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        if(savedInstanceState==null){
+        //if(savedInstanceState==null){
             mViewContainer= inflater.inflate(R.layout.fragment_electronic_bar, container, false);
 
             mRecyclerView= (RecyclerView)mViewContainer.findViewById(R.id.reyclerview_electronic_bars);
@@ -117,9 +117,9 @@ public class ElectronicBarFragment extends Fragment implements OnClickBarItem {
                     mRecyclerView.setVisibility(View.VISIBLE);
                 }
             });
-        }
+        //}
 
-        onSaveInstanceState(savedInstanceState);
+       // onSaveInstanceState(savedInstanceState);
 
         return mViewContainer;
     }

@@ -344,6 +344,16 @@
         <item name="android:background">@drawable/ic_more_vert_white_24dp</item>
     </style>
 
+    <style name="listanimations">
+        <item name="android:inAnimation">@anim/slide_down</item>
+        <item name="android:outAnimation">@anim/slide_up</item>
+
+
+    </style>
+
+
+
+
 
 
 

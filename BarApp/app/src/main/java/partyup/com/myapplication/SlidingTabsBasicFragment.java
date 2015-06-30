@@ -62,12 +62,31 @@ public class SlidingTabsBasicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        if(mViewContainer==null){
+        //if(mViewContainer==null){
             mViewContainer=inflater.inflate(R.layout.fragment_sliding_tabs, container, false);
             mBarsType= new ArrayList<>();
 
             mBarsType= HandlerProvider.getProvider().getFragmentsBars();
-        }
+
+
+
+
+        mViewPager = (ViewPager) mViewContainer.findViewById(R.id.viewpager);
+        mViewPager.setAdapter(new BarsPagerAdapter(getFragmentManager()));
+        // END_INCLUDE (setup_viewpager)
+
+        // BEGIN_INCLUDE (setup_slidingtablayout)
+        // Give the SlidingTabLayout the ViewPager, this must be done AFTER the ViewPager has had
+        // it's PagerAdapter set.
+        mSlidingTabLayout = (SlidingTabLayout) mViewContainer.findViewById(R.id.sliding_tabs);
+        mSlidingTabLayout.setViewPager(mViewPager);
+        mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.myPrimaryColor));
+        //SlidingTabLayout.TabColorizer
+        //mSlidingTabLayout.setCustomTabColorizer();
+
+
+
+        //}
 
         return mViewContainer;
     }
@@ -82,7 +101,7 @@ public class SlidingTabsBasicFragment extends Fragment {
      *
      * @param view View created in {@link #onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)}
      */
-    @Override
+    /*@Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // BEGIN_INCLUDE (setup_viewpager)
         // Get the ViewPager and set it's PagerAdapter so that it can display items
@@ -100,9 +119,10 @@ public class SlidingTabsBasicFragment extends Fragment {
         //mSlidingTabLayout.setCustomTabColorizer();
 
 
+        super.onViewCreated(view, savedInstanceState);
 
         // END_INCLUDE (setup_slidingtablayout)
-    }
+    }*/
     // END_INCLUDE (fragment_onviewcreated)
 
     /**
@@ -150,11 +170,12 @@ public class SlidingTabsBasicFragment extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
-            Fragment fragment= mBarsType.get(position).getFragment() ;
+            Fragment fragment= mBarsType.get(position).getFragment();
 
 
             // Return the View
-            return fragment;        }
+            return fragment;
+        }
 
         /**
          * Instantiate the {@link android.view.View} which should be displayed at {@code position}. Here we

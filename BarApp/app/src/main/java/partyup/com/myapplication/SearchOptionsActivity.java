@@ -12,7 +12,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -22,15 +26,23 @@ import partyup.com.myapplication.Objects.Bar;
 import partyup.com.myapplication.Objects.Category;
 import partyup.com.myapplication.Provider.HandlerProvider;
 import partyup.com.myapplication.Provider.OnProviderResponse;
+import partyup.com.myapplication.utiles.AndroidUtiles;
 
 
-public class SearchOptionsActivity extends AppCompatActivity implements OnClickBarItem{
+public class SearchOptionsActivity extends AppCompatActivity implements OnClickBarItem, View.OnClickListener{
 
 
     private RecyclerView mRecyclerSearchResults;
     private LinearLayoutManager mLinearLayoutManager;
     private ProgressBar mProgressBar;
     private ArrayList<Bar> mBarsSearch;
+    private ImageView mImgFilter;
+    private RelativeLayout mRelativeSearch;
+    private View mViewFilterAdd;
+    private boolean isFilterOpen=false;
+    private Animation mSlideDown;
+    private Animation mSlideUp;
+    private SearchView searchView;
 
 
 
@@ -55,21 +67,24 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
         HandlerProvider.getProvider().setmContext(this);
 
         HandlerProvider.getProvider().getBars(new Category(), new OnProviderResponse() {
-                    @Override
-                    public void onSucessResponse(Object responce) {
+            @Override
+            public void onSucessResponse(Object responce) {
 
-                        mBarsSearch = (ArrayList<Bar>) responce;
-                        RecyclerAdapterSearch adapter = new RecyclerAdapterSearch(mBarsSearch, SearchOptionsActivity.this, SearchOptionsActivity.this);
-                        mRecyclerSearchResults.setAdapter(adapter);
-
-
-                        mProgressBar.setVisibility(View.GONE);
-
-                        mRecyclerSearchResults.setVisibility(View.VISIBLE);
+                mBarsSearch = (ArrayList<Bar>) responce;
+                RecyclerAdapterSearch adapter = new RecyclerAdapterSearch(mBarsSearch, SearchOptionsActivity.this, SearchOptionsActivity.this);
+                mRecyclerSearchResults.setAdapter(adapter);
 
 
-                    }
-                });
+                mProgressBar.setVisibility(View.GONE);
+
+                mRecyclerSearchResults.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
+        mSlideDown= AnimationUtils.loadAnimation(this,R.anim.slide_down);
+        mSlideUp= AnimationUtils.loadAnimation(this,R.anim.slide_up);
 
     }
 
@@ -77,6 +92,9 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
 
         mRecyclerSearchResults=(RecyclerView)findViewById(R.id.recyclerview_search_results);
         mProgressBar= (ProgressBar)findViewById(R.id.progress_bar);
+        mImgFilter= (ImageView)findViewById(R.id.img_filter_button);
+        mImgFilter.setOnClickListener(this);
+        mRelativeSearch=(RelativeLayout)findViewById(R.id.relative_search_results);
 
 
 
@@ -97,7 +115,7 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -155,5 +173,46 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
     }
 
 
+    @Override
+    public void onClick(View v) {
 
+        switch (v.getId()){
+            case R.id.img_filter_button:
+                if(isFilterOpen){
+                    if(mViewFilterAdd!=null)
+                        mViewFilterAdd.clearAnimation();
+
+                    mViewFilterAdd.startAnimation(mSlideUp);
+
+                    mRelativeSearch.removeView(mViewFilterAdd);
+                    mImgFilter.setImageResource(R.drawable.ic_expand_more_white_24dp);
+                    isFilterOpen=false;
+
+
+                }else {
+                    if(mViewFilterAdd!=null)
+                        mViewFilterAdd.clearAnimation();
+
+                    AndroidUtiles.keyBoardHide(searchView,this);
+                    mImgFilter.setImageResource(R.drawable.ic_expand_less_white_24dp);
+
+                    if(mViewFilterAdd==null){
+                        mViewFilterAdd=getLayoutInflater().inflate(R.layout.view_filter_search,mRelativeSearch,false);
+
+                    }
+
+                    mViewFilterAdd.startAnimation(mSlideDown);
+
+                    mRelativeSearch.addView(mViewFilterAdd);
+                    isFilterOpen=true;
+                }
+
+
+
+
+
+                break;
+        }
+
+    }
 }

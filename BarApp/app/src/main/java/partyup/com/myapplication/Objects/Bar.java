@@ -1,6 +1,8 @@
 package partyup.com.myapplication.Objects;
 
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by user on 07/05/2015.
  */
@@ -24,6 +26,15 @@ public class Bar {
     private String WebSite="";
     private String MusicStyle="";
     private String PaymentsSystem;
+
+    public void setCordinates(String lat,String lon){
+        this.lat=lat;
+        this.lng=lon;
+    }
+
+    public LatLng getCordinates(){
+        return new LatLng(Double.valueOf(lat),Double.valueOf(lng));
+    }
 
     public String getWebSite() {
         return WebSite;
