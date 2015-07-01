@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -24,14 +23,14 @@ import partyup.com.myapplication.R;
 /**
  * Created by user on 07/05/2015.
  */
-public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.PersonViewHolder>{
+public class RecyclerAdapterRestaurant extends RecyclerView.Adapter<RecyclerAdapterRestaurant.PersonViewHolder>{
 
     private final Context mContext;
     private ArrayList<Bar> mBars= new ArrayList<>();
     private static OnClickBarItem mActividad;
 
 
-    public RecyclerAdapterBar(ArrayList<Bar> bars, OnClickBarItem actividad,Context context){
+    public RecyclerAdapterRestaurant(ArrayList<Bar> bars, OnClickBarItem actividad,Context context){
         this.mContext=context;
         mActividad=actividad;
         this.mBars= bars;
@@ -39,7 +38,7 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
     }
 
     @Override
-    public RecyclerAdapterBar.PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerAdapterRestaurant.PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_bar, parent, false);
         PersonViewHolder pvh = new PersonViewHolder(v);
         return pvh;
@@ -47,7 +46,7 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
     }
 
     @Override
-    public void onBindViewHolder(RecyclerAdapterBar.PersonViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerAdapterRestaurant.PersonViewHolder holder, final int position) {
         holder.txtBarName.setText(mBars.get(position).getmName());
         holder.txtHours.setText(mBars.get(position).getmSchedule());
         holder.txtBarPrice.setText(mBars.get(position).getPrice());
@@ -67,17 +66,6 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
                 mActividad.onClickBar(position);
             }
         });
-
-        if(position==(mBars.size()-1)){
-            holder.buttonProgressBar.setVisibility(View.VISIBLE);
-
-            mActividad.onLastElement();
-        }else {
-            holder.buttonProgressBar.setVisibility(View.GONE);
-
-        }
-
-
     }
 
     private int getColorId(ColorsTheme colorsTheme) {
@@ -131,7 +119,6 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
         TextView txtBarPrice;
         TextView txtBarAddress;
         LinearLayout lnCardview;
-        ProgressBar buttonProgressBar;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -142,8 +129,6 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
             txtBarPrice= (TextView)itemView.findViewById(R.id.bar_price);
             txtBarAddress= (TextView)itemView.findViewById(R.id.bar_dir);
             lnCardview=(LinearLayout)itemView.findViewById(R.id.linear_cardview_item);
-            buttonProgressBar=(ProgressBar)itemView.findViewById(R.id.linear_progress);
-
 
 
 

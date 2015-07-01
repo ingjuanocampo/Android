@@ -24,7 +24,7 @@ import partyup.com.myapplication.views.SlidingTabLayout;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerCallbacks,ElectronicBarFragment.OnFragmentInteractionListener,
-        RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener,FragmentCrossoverBar.OnFragmentInteractionListener,FragmentHelp.OnFragmentInteractionListener
+        RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener,FragmentBar.OnFragmentInteractionListener,FragmentHelp.OnFragmentInteractionListener
         ,FragmentSetting.OnFragmentInteractionListener,FragmentAbout.OnFragmentInteractionListener{
 
     //private Toolbar mToolbar;

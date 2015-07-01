@@ -28,7 +28,7 @@ public class ServerProvider extends ProviderBase {
 
     private ArrayList<Bar> Bars;
     @Override
-    public void getBars(Category category, final OnProviderResponse activity) {
+    public void getBars(Category category, final OnProviderResponse activity,int page) {
 
 
         ManagerAsynTask mExcutor= new ManagerAsynTask(new ServicesConsumer() {

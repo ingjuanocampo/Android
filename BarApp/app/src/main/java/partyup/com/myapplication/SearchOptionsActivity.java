@@ -66,7 +66,7 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
 
         HandlerProvider.getProvider().setmContext(this);
 
-        HandlerProvider.getProvider().getBars(new Category(), new OnProviderResponse() {
+        HandlerProvider.getProvider().getBars(new Category("",""), new OnProviderResponse() {
             @Override
             public void onSucessResponse(Object responce) {
 
@@ -81,7 +81,7 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
 
 
             }
-        });
+        },1);
 
         mSlideDown= AnimationUtils.loadAnimation(this,R.anim.slide_down);
         mSlideUp= AnimationUtils.loadAnimation(this,R.anim.slide_up);
@@ -169,6 +169,11 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
 
     @Override
     public void onClickBar(int pos) {
+
+    }
+
+    @Override
+    public void onLastElement() {
 
     }
 

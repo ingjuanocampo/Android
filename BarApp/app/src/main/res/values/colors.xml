@@ -8,8 +8,8 @@
         http://www.google.com/design/spec/style/color.html#color-ui-color-palette
     -->
 
-    <color name="myPrimaryColor">#213942</color>
-    <color name="myPrimaryDarkColor">#002949</color>
+    <color name="myPrimaryColor">#002949</color>
+    <color name="myPrimaryDarkColor">#0F2F5F</color>
     <color name="myAccentColor">#00baff</color>
     <color name="myDrawerBackground">#F2F2F2</color>
     <color name="myWindowBackground">#DEDEDE</color>
@@ -31,7 +31,7 @@
     <color name="redToolbar">#FF1744</color>
     <color name="redStatusBar">#D50000</color>
     <color name="redTabBar">#FF5252</color>
-    <color name="redAccent">#FF8A80</color>
+    <color name="redAccent">#FF5252</color>
 
 
 
@@ -60,9 +60,9 @@
 
 
 
-    <color name="blueCStatusBar">#2196F3</color>
-    <color name="blueCToobar">#42A5F5</color>
-    <color name="blueCAccent">#64B5F6</color>
+    <color name="blueCStatusBar">#2962FF</color>
+    <color name="blueCToobar">#2979FF</color>
+    <color name="blueCAccent">#448AFF</color>
 
 
     <color name="cyanStatusBar">#006064</color>

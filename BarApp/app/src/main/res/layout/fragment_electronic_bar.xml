@@ -17,12 +17,23 @@
             android:id="@+id/progress_bar"
             />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/reyclerview_electronic_bars"
-        android:visibility="gone"
-        />
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/activity_main_swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linear_progress">
+
+                <android.support.v7.widget.RecyclerView
+                    android:clickable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/reyclerview_electronic_bars"
+                    android:visibility="gone"
+                    />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
 
     </RelativeLayout>
 

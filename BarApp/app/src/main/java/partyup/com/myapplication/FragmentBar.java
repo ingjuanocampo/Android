@@ -2,9 +2,11 @@ package partyup.com.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,9 +16,9 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 import partyup.com.myapplication.Adapters.RecyclerAdapterBar;
-import partyup.com.myapplication.Adapters.RecyclerAdapterDiscos;
 import partyup.com.myapplication.Interfaces.OnClickBarItem;
 import partyup.com.myapplication.Objects.Bar;
 import partyup.com.myapplication.Objects.Category;
@@ -30,12 +32,12 @@ import partyup.com.myapplication.utiles.GsonConverter;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ElectronicBarFragment.OnFragmentInteractionListener} interface
+ * {@link FragmentBar.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ElectronicBarFragment#newInstance} factory method to
+ * Use the {@link FragmentBar#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ElectronicBarFragment extends Fragment {
+public class FragmentBar extends Fragment implements OnClickBarItem{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "category";
@@ -43,15 +45,17 @@ public class ElectronicBarFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParamCategory;
-   // private String mParam2;
+    // private String mParam2;
     private View mViewContainer;
 
     private RecyclerView mRecyclerView;
     private OnFragmentInteractionListener mListener;
     private LinearLayoutManager mLayoutManager;
-    private RecyclerAdapterDiscos mAdapter;
+    private RecyclerAdapterBar mAdapter;
     private ProgressBar mProgressBar;
     private ArrayList<Bar> mBars;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+    //private ProgressBar buttonProgressBar;
     //private ArrayList<Bar> mBars= new ArrayList<>();
 
     /**
@@ -62,8 +66,8 @@ public class ElectronicBarFragment extends Fragment {
      * @return A new instance of fragment ElectronicBarFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ElectronicBarFragment newInstance(String category) {
-        ElectronicBarFragment fragment = new ElectronicBarFragment();
+    public static FragmentBar newInstance(String category) {
+        FragmentBar fragment = new FragmentBar();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, category);
         //args.putString(ARG_PARAM2, param2);
@@ -71,7 +75,7 @@ public class ElectronicBarFragment extends Fragment {
         return fragment;
     }
 
-    public ElectronicBarFragment() {
+    public FragmentBar() {
         // Required empty public constructor
     }
 
@@ -90,51 +94,61 @@ public class ElectronicBarFragment extends Fragment {
         // Inflate the layout for this fragment
 
         //if(savedInstanceState==null){
-            mViewContainer= inflater.inflate(R.layout.fragment_electronic_bar, container, false);
+        mViewContainer= inflater.inflate(R.layout.fragment_electronic_bar, container, false);
 
-            mRecyclerView= (RecyclerView)mViewContainer.findViewById(R.id.reyclerview_electronic_bars);
-            mProgressBar = (ProgressBar)mViewContainer.findViewById(R.id.progress_bar);
+        mRecyclerView= (RecyclerView)mViewContainer.findViewById(R.id.reyclerview_electronic_bars);
+        mProgressBar = (ProgressBar)mViewContainer.findViewById(R.id.progress_bar);
 
-            mRecyclerView.setHasFixedSize(true); //--> SOLO si el tamao no cmabia, mejora mucho el rendimiento.
+        mRecyclerView.setHasFixedSize(true); //--> SOLO si el tamao no cmabia, mejora mucho el rendimiento.
 
-            mLayoutManager = new LinearLayoutManager(mViewContainer.getContext());
+        mLayoutManager = new LinearLayoutManager(mViewContainer.getContext());
 
-            mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) mViewContainer.findViewById(R.id.activity_main_swipe_refresh_layout);
+        mSwipeRefreshLayout.setColorSchemeColors(R.color.redToolbar,R.color.myPrimaryColor,R.color.purpleToobar,R.color.cyanBStatusBar);
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
 
 
-            HandlerProvider.getProvider().setmContext(mViewContainer.getContext());
 
-            HandlerProvider.getProvider().getBars(getCategory(), new OnProviderResponse() {
-                @Override
-                public void onSucessResponse(Object responce) {
+        HandlerProvider.getProvider().setmContext(mViewContainer.getContext());
 
-                   mBars = (ArrayList<Bar>) responce;
-                    mAdapter = new RecyclerAdapterDiscos(mBars, new OnClickBarItem() {
-                        @Override
-                        public void onClickBar(int pos) {
-                            Intent intent = new Intent(mViewContainer.getContext(),ActivitySiteDetails.class);
-                            intent.putExtra(Definitions.Extra_1, GsonConverter.object2StringGson(mBars.get(pos)));
+        HandlerProvider.getProvider().getBars(ProviderBase.BarCategory, new OnProviderResponse() {
+            @Override
+            public void onSucessResponse(Object responce) {
 
-                            startActivityForResult(intent, 0);
-                        }
 
-                        @Override
-                        public void onLastElement() {
-                            Log.w("onLastElement", "here");
+                mBars = (ArrayList<Bar>) responce;
+                mAdapter = new RecyclerAdapterBar(mBars, FragmentBar.this, mViewContainer.getContext());
 
-                        }
-                    }, mViewContainer.getContext());
+                mRecyclerView.setAdapter(mAdapter);
+                mProgressBar.setVisibility(View.GONE);
 
-                    mRecyclerView.setAdapter(mAdapter);
-                    mProgressBar.setVisibility(View.GONE);
+                mRecyclerView.setVisibility(View.VISIBLE);
+            }
+        }, 1);
 
-                    mRecyclerView.setVisibility(View.VISIBLE);
-                }
-            },1);
+       /* mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                buttonProgressBar.setVisibility(View.GONE);
+
+            }
+        });*/
+
+
+
         //}
 
-       // onSaveInstanceState(savedInstanceState);
+        // onSaveInstanceState(savedInstanceState);
 
         return mViewContainer;
     }
@@ -188,6 +202,71 @@ public class ElectronicBarFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onClickBar(int pos) {
+        Intent intent = new Intent(mViewContainer.getContext(), ActivitySiteDetails.class);
+        intent.putExtra(Definitions.Extra_1, GsonConverter.object2StringGson(mBars.get(pos)));
+
+        startActivityForResult(intent, 0);
+
+
+    }
+
+    @Override
+    public void onLastElement() {
+
+        Log.w("OnLastElement","alright");
+        //buttonProgressBar.setVisibility(View.VISIBLE);
+
+
+        HandlerProvider.getProvider().getBars(ProviderBase.BarCategory, new OnProviderResponse() {
+            @Override
+            public void onSucessResponse(Object responce) {
+
+                ArrayList<Bar> mBarsTemp = (ArrayList<Bar>) responce;
+
+                mBars.addAll((mBars.size()),mBarsTemp);
+                //mAdapter = new RecyclerAdapterBar(mBars, FragmentBar.this, mViewContainer.getContext());
+
+                //mRecyclerView.setAdapter(mAdapter);
+
+
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                        getActivity().runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                mAdapter.notifyDataSetChanged();
+                                //buttonProgressBar.setVisibility(View.GONE);
+
+
+                            }
+                        });
+
+
+
+                    }
+                }).start();
+
+
+                mProgressBar.setVisibility(View.GONE);
+
+                mRecyclerView.setVisibility(View.VISIBLE);
+            }
+        }, 2);
+
+
+    }
 
 
     /**

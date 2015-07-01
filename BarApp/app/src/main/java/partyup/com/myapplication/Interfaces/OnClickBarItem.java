@@ -5,4 +5,5 @@ package partyup.com.myapplication.Interfaces;
  */
 public interface OnClickBarItem {
     public void onClickBar(int pos);
+    void onLastElement();
 }

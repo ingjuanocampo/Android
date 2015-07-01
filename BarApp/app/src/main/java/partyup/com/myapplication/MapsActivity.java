@@ -311,7 +311,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
         mMarksMap= new HashMap<>();
 
 
-        HandlerProvider.getProvider().getBars(new Category(), new OnProviderResponse() {
+        HandlerProvider.getProvider().getBars(new Category("",""), new OnProviderResponse() {
             @Override
             public void onSucessResponse(Object responce) {
                 mBars=(ArrayList<Bar>)responce;
@@ -324,7 +324,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
 
                 }
             }
-        });
+        },1);
 
 
     }

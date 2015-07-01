@@ -62,7 +62,7 @@ public class SlidingTabsBasicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        //if(mViewContainer==null){
+        if(mViewContainer==null){
             mViewContainer=inflater.inflate(R.layout.fragment_sliding_tabs, container, false);
             mBarsType= new ArrayList<>();
 
@@ -86,7 +86,7 @@ public class SlidingTabsBasicFragment extends Fragment {
 
 
 
-        //}
+        }
 
         return mViewContainer;
     }

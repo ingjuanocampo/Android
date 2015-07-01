@@ -23,4 +23,9 @@ public class Category {
     public void setName(String name) {
         Name = name;
     }
+
+    public Category(String name,String id){
+        this.Name=name;
+        this.id=id;
+    }
 }
