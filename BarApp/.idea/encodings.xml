@@ -3,6 +3,10 @@
   <component name="Encoding" useUTFGuessing="false" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/ActivitySiteDetails.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/Adapters/AdapterListDetails.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/FragmentBar.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/FragmentCasinos.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/FragmentDiscos.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/FragmentRestaurant.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/Objects/ColorsTheme.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/partyup/com/myapplication/Objects/ItemDetails.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res" charset="windows-1252" />

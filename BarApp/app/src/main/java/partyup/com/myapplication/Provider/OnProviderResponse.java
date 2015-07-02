@@ -6,5 +6,6 @@ package partyup.com.myapplication.Provider;
 public interface OnProviderResponse {
 
      void onSucessResponse(Object responce);
+     void onFailResponse(String msn);
 
 }

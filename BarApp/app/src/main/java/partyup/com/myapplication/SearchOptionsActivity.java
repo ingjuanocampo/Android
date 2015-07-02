@@ -81,6 +81,11 @@ public class SearchOptionsActivity extends AppCompatActivity implements OnClickB
 
 
             }
+
+            @Override
+            public void onFailResponse(String msn) {
+
+            }
         },1);
 
         mSlideDown= AnimationUtils.loadAnimation(this,R.anim.slide_down);

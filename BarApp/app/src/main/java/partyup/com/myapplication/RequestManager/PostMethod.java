@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -13,6 +14,7 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
@@ -29,7 +31,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.CharBuffer;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 import partyup.com.myapplication.utiles.Definitions;
 
@@ -234,22 +240,39 @@ public class PostMethod {
      * @return
      * @throws IOException
      */
-    public String GetFromServerURL(String complement) throws IOException {
+    public String GetFromServerURL(String complement,Map<String,String> params/*String Page,String PageLenght,String Category*/) throws IOException {
 
 
-        URL mURL= new URL(urlbase+complement);
 
-
+        URL mURL= new URL(urlbase+complement+createQueryStringForParameters(params));
 
         HttpURLConnection urlConnection = (HttpURLConnection) mURL.openConnection();
-        urlConnection.setRequestProperty("Accept","application/json");
+        urlConnection.setRequestProperty("Accept", "application/json");
+        /*if(!Page.equals("")){
+
+
+            urlConnection.setRequestProperty("o", Page);
+            urlConnection.setRequestProperty("l", PageLenght);
+
+        }
+
+        if(!Category.equals("")){
+            urlConnection.setRequestProperty("category",Category);
+        }*/
+
+
+
+
         urlConnection.setRequestMethod("GET");
+
+        Log.w("Data-OUT", urlConnection.getRequestProperties().toString());
+        Log.w("Data-URL", urlbase+complement+createQueryStringForParameters(params));
+
 
         String jsonResultStr="";
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-            Log.w("res",in.toString());
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 
@@ -262,18 +285,44 @@ public class PostMethod {
 
             jsonResultStr=total.toString();
 
+            Log.w("Data-IN",jsonResultStr);
+
+
         }finally{
                 urlConnection.disconnect();
         }
 
 
         return jsonResultStr;
-
-
-
-
-
     }
+
+
+    private static final char PARAMETER_DELIMITER = '&';
+    private static final char PARAMETER_EQUALS_CHAR = '=';
+    public static String createQueryStringForParameters(Map<String, String> parameters) {
+        StringBuilder parametersAsQueryString = new StringBuilder();
+        if (parameters != null) {
+            boolean firstParameter = true;
+
+            for (String parameterName : parameters.keySet()) {
+                if (!firstParameter) {
+                    parametersAsQueryString.append(PARAMETER_DELIMITER);
+                }
+
+                parametersAsQueryString.append(parameterName)
+                        .append(PARAMETER_EQUALS_CHAR)
+                        .append(URLEncoder.encode(
+                                parameters.get(parameterName)));
+
+                firstParameter = false;
+            }
+        }
+        return "?"+parametersAsQueryString.toString();
+    }
+
+
+
+
 
 
     /**

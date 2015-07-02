@@ -92,6 +92,11 @@ public class FragmentSetting extends Fragment {
 
                 spnCities.setAdapter(adapter);
             }
+
+            @Override
+            public void onFailResponse(String msn) {
+
+            }
         });
 
 

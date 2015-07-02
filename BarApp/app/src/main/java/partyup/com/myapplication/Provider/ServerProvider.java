@@ -1,11 +1,10 @@
 package partyup.com.myapplication.Provider;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 import partyup.com.myapplication.Objects.Bar;
 import partyup.com.myapplication.Objects.Category;
+import partyup.com.myapplication.Objects.ResponseFormat;
 import partyup.com.myapplication.RequestManager.ManagerAsynTask;
 import partyup.com.myapplication.RequestManager.ServicesConsumer;
 import partyup.com.myapplication.utiles.Definitions;
@@ -15,6 +14,8 @@ import partyup.com.myapplication.utiles.GsonConverter;
  * Created by juan.ocampo on 18/06/2015.
  */
 public class ServerProvider extends ProviderBase {
+
+    private static final int pageLenght=1;
 
     private static ProviderBase instance;
 
@@ -33,17 +34,20 @@ public class ServerProvider extends ProviderBase {
 
         ManagerAsynTask mExcutor= new ManagerAsynTask(new ServicesConsumer() {
             @Override
-            public void processResponce(String json) {
-               Bars = GsonConverter.gson2ArrayBars(json);
-                Log.w("Bar", Bars.get(1).getmName());
+            public void processResponce(ResponseFormat responseFormat) {
 
-                activity.onSucessResponse(Bars);
+               if(!responseFormat.isErrorLocal() && !responseFormat.isErrorServer() ){
+                   Bars = GsonConverter.gson2ArrayBars(responseFormat.getData());
 
+                   activity.onSucessResponse(Bars);
+               }else {
 
+                   activity.onFailResponse(responseFormat.getErrorMsn());
+               }
             }
         },getmContext());
 
-        mExcutor.execute(Definitions.GET,"/bars");
+        mExcutor.execute(Definitions.GET,"/bars",String.valueOf(page*pageLenght),String.valueOf(pageLenght),category.getName());
 
 
 

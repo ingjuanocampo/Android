@@ -4,15 +4,18 @@ import android.content.Intent;
 import android.location.Location;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -54,6 +57,8 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
     private ImageView imgClose;
     private ImageView imgBar;
     private LinearLayout lnViewDetails;
+    private ProgressBar mProgressBar;
+    private LinearLayout mLinearMain;
 
 
     @Override
@@ -90,6 +95,8 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
         txtName=(TextView)findViewById(R.id.txt_bar_name_marker);
         txtPrice=(TextView)findViewById(R.id.txt_price_marker);
         lnViewDetails =(LinearLayout)findViewById(R.id.linear_marker_details);
+        mProgressBar=(ProgressBar)findViewById(R.id.progress_bar_map);
+        mLinearMain=(LinearLayout)findViewById(R.id.linear_maps_main);
 
         //Preview Market Details
 
@@ -174,7 +181,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @Override
@@ -316,6 +323,8 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
             public void onSucessResponse(Object responce) {
                 mBars=(ArrayList<Bar>)responce;
 
+                mProgressBar.setVisibility(View.GONE);
+
 
 
                 for(Bar bar:mBars){
@@ -323,6 +332,25 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
                             .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))), count++);
 
                 }
+            }
+
+            @Override
+            public void onFailResponse(String msn) {
+
+                Log.e("MapsActivity", "onFailResponse" + msn);
+
+
+                mProgressBar.setVisibility(View.GONE);
+
+                Snackbar
+                        .make(mLinearMain, "Sin Conexión", Snackbar.LENGTH_LONG)
+                        .setAction("OK", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                            }
+                        })
+                        .show(); // Don’t forget to show!
+
             }
         },1);
 

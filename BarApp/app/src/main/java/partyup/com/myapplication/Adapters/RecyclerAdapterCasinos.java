@@ -1,7 +1,6 @@
 package partyup.com.myapplication.Adapters;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,16 +21,16 @@ import partyup.com.myapplication.Objects.ColorsTheme;
 import partyup.com.myapplication.R;
 
 /**
- * Created by user on 07/05/2015.
+ * Created by juan.ocampo on 02/07/2015.
  */
-public class RecyclerAdapterDiscos extends RecyclerView.Adapter<RecyclerAdapterDiscos.PersonViewHolder>{
+public class RecyclerAdapterCasinos extends RecyclerView.Adapter<RecyclerAdapterCasinos.PersonViewHolder>{
 
     private final Context mContext;
     private ArrayList<Bar> mBars= new ArrayList<>();
     private static OnClickBarItem mActividad;
 
 
-    public RecyclerAdapterDiscos(ArrayList<Bar> bars, OnClickBarItem actividad,Context context){
+    public RecyclerAdapterCasinos(ArrayList<Bar> bars, OnClickBarItem actividad,Context context){
         this.mContext=context;
         mActividad=actividad;
         this.mBars= bars;
@@ -39,7 +38,7 @@ public class RecyclerAdapterDiscos extends RecyclerView.Adapter<RecyclerAdapterD
     }
 
     @Override
-    public RecyclerAdapterDiscos.PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerAdapterCasinos.PersonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_bar, parent, false);
         PersonViewHolder pvh = new PersonViewHolder(v);
         return pvh;
@@ -47,7 +46,7 @@ public class RecyclerAdapterDiscos extends RecyclerView.Adapter<RecyclerAdapterD
     }
 
     @Override
-    public void onBindViewHolder(RecyclerAdapterDiscos.PersonViewHolder holder, final int position) {
+    public void onBindViewHolder(RecyclerAdapterCasinos.PersonViewHolder holder, final int position) {
         holder.txtBarName.setText(mBars.get(position).getmName());
         holder.txtHours.setText(mBars.get(position).getmSchedule());
         holder.txtBarPrice.setText(mBars.get(position).getPrice());

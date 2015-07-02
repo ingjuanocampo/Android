@@ -9,6 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <ImageView
+            android:id="@+id/img_refresh_ui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="?attr/colorAccent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:src="@drawable/ic_cached_white_48dp"
+            android:visibility="gone" />
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

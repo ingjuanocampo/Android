@@ -2,7 +2,6 @@ package partyup.com.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -18,28 +17,21 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
-import partyup.com.myapplication.Adapters.RecyclerAdapterBar;
+import partyup.com.myapplication.Adapters.RecyclerAdapterCasinos;
+import partyup.com.myapplication.Adapters.RecyclerAdapterDiscos;
 import partyup.com.myapplication.Interfaces.OnClickBarItem;
 import partyup.com.myapplication.Objects.Bar;
-import partyup.com.myapplication.Objects.Category;
 import partyup.com.myapplication.Provider.HandlerProvider;
 import partyup.com.myapplication.Provider.OnProviderResponse;
 import partyup.com.myapplication.Provider.ProviderBase;
 import partyup.com.myapplication.utiles.Definitions;
 import partyup.com.myapplication.utiles.GsonConverter;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentBar.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentBar#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by juan.ocampo on 02/07/2015.
  */
-public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClickListener{
+public class FragmentCasinos  extends Fragment implements OnClickBarItem,View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "category";
@@ -53,12 +45,11 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
     private RecyclerView mRecyclerView;
     private OnFragmentInteractionListener mListener;
     private LinearLayoutManager mLayoutManager;
-    private RecyclerAdapterBar mAdapter;
+    private RecyclerAdapterCasinos mAdapter;
     private ProgressBar mProgressBar;
     private ArrayList<Bar> mBars;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ImageView ImgRefreshUI;
-    private int Pager=0;
     //private ProgressBar buttonProgressBar;
     //private ArrayList<Bar> mBars= new ArrayList<>();
 
@@ -70,8 +61,8 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
      * @return A new instance of fragment ElectronicBarFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentBar newInstance(String category) {
-        FragmentBar fragment = new FragmentBar();
+    public static FragmentCasinos newInstance(String category) {
+        FragmentCasinos fragment = new FragmentCasinos();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, category);
         //args.putString(ARG_PARAM2, param2);
@@ -79,7 +70,7 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
         return fragment;
     }
 
-    public FragmentBar() {
+    public FragmentCasinos() {
         // Required empty public constructor
     }
 
@@ -115,8 +106,6 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-
                 populateRecyclerView();
             }
         });
@@ -152,25 +141,20 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
         mSwipeRefreshLayout.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
         //ImgRefreshUI.setOnClickListener(null);
-        Pager=0;
 
         HandlerProvider.getProvider().setmContext(mViewContainer.getContext());
 
-        HandlerProvider.getProvider().getBars(ProviderBase.BarCategory, new OnProviderResponse() {
+        HandlerProvider.getProvider().getBars(ProviderBase.CasinoCategory, new OnProviderResponse() {
             @Override
-            public void onSucessResponse(final Object responce) {
+            public void onSucessResponse(Object responce) {
 
-
-                        mBars = (ArrayList<Bar>) responce;
-                        mAdapter = new RecyclerAdapterBar(mBars, FragmentBar.this, mViewContainer.getContext());
-                        mRecyclerView.setAdapter(mAdapter);
-                        mProgressBar.setVisibility(View.GONE);
-                        mRecyclerView.setVisibility(View.VISIBLE);
-                        mSwipeRefreshLayout.setVisibility(View.VISIBLE);
-
-                        mSwipeRefreshLayout.setRefreshing(false);
-
-
+                mBars = (ArrayList<Bar>) responce;
+                mAdapter = new RecyclerAdapterCasinos(mBars, FragmentCasinos.this, mViewContainer.getContext());
+                mRecyclerView.setAdapter(mAdapter);
+                mProgressBar.setVisibility(View.GONE);
+                mRecyclerView.setVisibility(View.VISIBLE);
+                mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+                mSwipeRefreshLayout.setRefreshing(false);
 
 
             }
@@ -184,7 +168,7 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
                 mProgressBar.setVisibility(View.GONE);
                 mSwipeRefreshLayout.setVisibility(View.GONE);
 
-                Log.e("FragmentBar","onFailResponse"+msn);
+                Log.e("FragmentBar", "onFailResponse" + msn);
 
                 Snackbar
                         .make(mViewContainer, "Sin Conexión", Snackbar.LENGTH_LONG)
@@ -195,7 +179,7 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
                         })
                         .show(); // Don’t forget to show!
             }
-        }, Pager++);
+        }, 1);
 
 
     }
@@ -243,36 +227,40 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
     public void onLastElement() {
 
         Log.w("OnLastElement","alright");
+        //buttonProgressBar.setVisibility(View.VISIBLE);
 
-        HandlerProvider.getProvider().getBars(ProviderBase.BarCategory, new OnProviderResponse() {
+        HandlerProvider.getProvider().getBars(ProviderBase.CasinoCategory, new OnProviderResponse() {
             @Override
             public void onSucessResponse(Object responce) {
 
                 ArrayList<Bar> mBarsTemp = (ArrayList<Bar>) responce;
 
-                if(mBars.size()<0) {
-                    mBars.addAll((mBars.size()), mBarsTemp);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
+                mBars.addAll((mBars.size()),mBarsTemp);
+                //mAdapter = new RecyclerAdapterBar(mBars, FragmentBar.this, mViewContainer.getContext());
 
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            getActivity().runOnUiThread(new Runnable() {
+                //mRecyclerView.setAdapter(mAdapter);
 
-                                @Override
-                                public void run() {
-                                    mAdapter.notifyDataSetChanged();
-                                }
-                            });
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    }).start();
-                }
+                        getActivity().runOnUiThread(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                mAdapter.notifyDataSetChanged();
+                                //buttonProgressBar.setVisibility(View.GONE);
+                            }
+                        });
+                    }
+                }).start();
 
                 mProgressBar.setVisibility(View.GONE);
+
                 mRecyclerView.setVisibility(View.VISIBLE);
             }
 
@@ -280,7 +268,7 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
             public void onFailResponse(String msn) {
 
             }
-        }, Pager++);
+        }, 2);
 
 
     }

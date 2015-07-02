@@ -25,7 +25,9 @@ import partyup.com.myapplication.views.SlidingTabLayout;
 
 public class MainActivity extends AppCompatActivity implements NavigationDrawerCallbacks,ElectronicBarFragment.OnFragmentInteractionListener,
         RomanticBarFragment.OnFragmentInteractionListener,FragmentMap.OnFragmentInteractionListener,FragmentBar.OnFragmentInteractionListener,FragmentHelp.OnFragmentInteractionListener
-        ,FragmentSetting.OnFragmentInteractionListener,FragmentAbout.OnFragmentInteractionListener{
+        ,FragmentSetting.OnFragmentInteractionListener,FragmentAbout.OnFragmentInteractionListener,FragmentDiscos.OnFragmentInteractionListener
+        ,FragmentRestaurant.OnFragmentInteractionListener,FragmentCasinos.OnFragmentInteractionListener{
+
 
     //private Toolbar mToolbar;
     private NavigationDrawerFragment mNavigationDrawerFragment;
@@ -244,43 +246,55 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerC
 
 
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
+    public void onNavigationDrawerItemSelected(final int position) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Thread.sleep(300);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            switch (position) {
+                                case 0:
+
+                                    fragmentExecuter(fragment);
+                                    //if (oldFargsadment!=null)
+                                    //    fragmentTransaction.remove(oldFargment);
+
+                                    break;
+                                case 1:
+                                    //fragmentExecuter(fragmentMap);
+                                    Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                                    startActivityForResult(intent, 0);
+
+                                    break;
+
+                                case 2:
+                                    //Intent intentHelp = new Intent(this,HelpActivity.class);
+                                    //startActivityForResult(intentHelp,0);
+                                    fragmentExecuter(mFragmentHelp);
+                                    break;
+                                case 3:
+                                    fragmentExecuter(mFragmentSetting);
+
+                                    break;
+                                case 5:
+                                    fragmentExecuter(mFragmentAbout);
+                                    break;
 
 
-        switch (position){
-            case 0:
+                            }
+                        }
+                    });
 
-                fragmentExecuter(fragment);
-                //if (oldFargsadment!=null)
-                //    fragmentTransaction.remove(oldFargment);
-
-                break;
-            case 1:
-                //fragmentExecuter(fragmentMap);
-                Intent intent = new Intent(this,MapsActivity.class);
-                startActivityForResult(intent,0);
-
-                break;
-
-            case 2:
-                //Intent intentHelp = new Intent(this,HelpActivity.class);
-                //startActivityForResult(intentHelp,0);
-                fragmentExecuter(mFragmentHelp);
-                break;
-            case 3:
-                fragmentExecuter(mFragmentSetting);
-
-                break;
-            case 5:
-                fragmentExecuter(mFragmentAbout);
-                break;
-
-
-        }
-        //startActivity(new Intent(this,ViewPageTypeBars.class));
-        Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
-
-
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
 

@@ -47,7 +47,7 @@ public class MockProvider extends ProviderBase {
     public void getBars(Category category, final OnProviderResponse activity,int page) {
 
         if (category==BarCategory){
-            if(page==1){
+            if(page==0){
                 activity.onSucessResponse(getBars());
 
             }else {
@@ -58,10 +58,11 @@ public class MockProvider extends ProviderBase {
 
                         try {
                             Thread.sleep(1000);
+                            activity.onSucessResponse(getDiscos());
+
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        activity.onSucessResponse(getDiscos());
 
                     }
                 }).start();

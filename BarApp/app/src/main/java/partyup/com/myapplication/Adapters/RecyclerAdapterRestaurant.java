@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -66,6 +67,17 @@ public class RecyclerAdapterRestaurant extends RecyclerView.Adapter<RecyclerAdap
                 mActividad.onClickBar(position);
             }
         });
+
+        if(position==(mBars.size()-1)){
+            holder.buttonProgressBar.setVisibility(View.VISIBLE);
+
+            mActividad.onLastElement();
+        }else {
+            holder.buttonProgressBar.setVisibility(View.GONE);
+
+        }
+
+
     }
 
     private int getColorId(ColorsTheme colorsTheme) {
@@ -119,6 +131,7 @@ public class RecyclerAdapterRestaurant extends RecyclerView.Adapter<RecyclerAdap
         TextView txtBarPrice;
         TextView txtBarAddress;
         LinearLayout lnCardview;
+        ProgressBar buttonProgressBar;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -129,6 +142,8 @@ public class RecyclerAdapterRestaurant extends RecyclerView.Adapter<RecyclerAdap
             txtBarPrice= (TextView)itemView.findViewById(R.id.bar_price);
             txtBarAddress= (TextView)itemView.findViewById(R.id.bar_dir);
             lnCardview=(LinearLayout)itemView.findViewById(R.id.linear_cardview_item);
+            buttonProgressBar=(ProgressBar)itemView.findViewById(R.id.linear_progress);
+
 
 
 

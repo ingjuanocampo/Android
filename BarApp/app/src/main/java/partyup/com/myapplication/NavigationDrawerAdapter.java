@@ -47,7 +47,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
         viewHolder.imgIcon.setImageDrawable(mData.get(i).getDrawable());
 
-        viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
+        /*viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
                                                    @Override
                                                    public boolean onTouch(View v, MotionEvent event) {
 
@@ -67,15 +67,22 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
                                                        return true;
                                                    }
                                                }
-        );
-        viewHolder.linearRow.setOnClickListener(new View.OnClickListener() {
+        );*/
+
+
+
+
+       viewHolder.linearRow.setOnClickListener(new View.OnClickListener() {
                                                    @Override
                                                    public void onClick(View v) {
-                                                       if (mNavigationDrawerCallbacks != null)
-                                                           mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
-                                                   }
+                                                        if (mNavigationDrawerCallbacks != null)
+                                                            mNavigationDrawerCallbacks.onNavigationDrawerItemSelected(i);
+                                                  }
                                                }
         );
+
+
+
 
         //TODO: selected menu position, change layout accordingly
         if (mSelectedPosition == i || mTouchedPosition == i) {
@@ -83,6 +90,8 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         } else {
             viewHolder.linearRow.setBackgroundColor(Color.TRANSPARENT);
         }
+
+
     }
 
     private void touchPosition(int position) {

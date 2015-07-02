@@ -131,6 +131,11 @@ public class ElectronicBarFragment extends Fragment {
 
                     mRecyclerView.setVisibility(View.VISIBLE);
                 }
+
+                @Override
+                public void onFailResponse(String msn) {
+
+                }
             },1);
         //}
 

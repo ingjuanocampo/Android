@@ -6,6 +6,9 @@ import java.util.ArrayList;
 
 import partyup.com.myapplication.ElectronicBarFragment;
 import partyup.com.myapplication.FragmentBar;
+import partyup.com.myapplication.FragmentCasinos;
+import partyup.com.myapplication.FragmentDiscos;
+import partyup.com.myapplication.FragmentRestaurant;
 import partyup.com.myapplication.Objects.Bar;
 import partyup.com.myapplication.Objects.BarFragmentObject;
 import partyup.com.myapplication.Objects.Category;
@@ -15,10 +18,10 @@ import partyup.com.myapplication.Objects.Category;
  */
 public abstract class ProviderBase {
 
-    public static final Category BarCategory= new Category("Bar","1");
-    public static final Category CasinoCategory= new Category("Casino","2");
-    public static final Category RestauranCategory= new Category("Restaurantes","3");
-    public static final Category DiscoCategory= new Category("Disco","4");
+    public static final Category BarCategory= new Category("bar","1");
+    public static final Category CasinoCategory= new Category("casino","2");
+    public static final Category RestauranCategory= new Category("restaurant","3");
+    public static final Category DiscoCategory= new Category("disco","4");
 
 
 
@@ -32,9 +35,9 @@ public abstract class ProviderBase {
 
         ArrayList<BarFragmentObject> mBarsType = new ArrayList<>();
         mBarsType.add(new BarFragmentObject("BARES",new FragmentBar())); //ElectronicBarFragment.newInstance(BarCategory.getId())));
-        mBarsType.add(new BarFragmentObject("DISCOS",new ElectronicBarFragment())); // ElectronicBarFragment.newInstance(DiscoCategory.getId())));
-        mBarsType.add(new BarFragmentObject("RESTAURANTES", new ElectronicBarFragment())); // ElectronicBarFragment.newInstance(RestauranCategory.getId());
-        mBarsType.add(new BarFragmentObject("CASINOS", new ElectronicBarFragment())); //ElectronicBarFragment.newInstance(CasinoCategory.getId())));
+        mBarsType.add(new BarFragmentObject("DISCOS",new FragmentDiscos())); // ElectronicBarFragment.newInstance(DiscoCategory.getId())));
+        mBarsType.add(new BarFragmentObject("RESTAURANTES", new FragmentRestaurant())); // ElectronicBarFragment.newInstance(RestauranCategory.getId());
+        mBarsType.add(new BarFragmentObject("CASINOS", new FragmentCasinos())); //ElectronicBarFragment.newInstance(CasinoCategory.getId())));
 
 
 
