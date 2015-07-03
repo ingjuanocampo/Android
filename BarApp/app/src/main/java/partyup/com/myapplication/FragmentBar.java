@@ -31,6 +31,7 @@ import partyup.com.myapplication.utiles.Definitions;
 import partyup.com.myapplication.utiles.GsonConverter;
 
 
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -116,8 +117,8 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
             @Override
             public void onRefresh() {
 
-
                 populateRecyclerView();
+
             }
         });
 
@@ -250,8 +251,9 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
 
                 ArrayList<Bar> mBarsTemp = (ArrayList<Bar>) responce;
 
-                if(mBars.size()<0) {
+                if(mBarsTemp.size()!=0) {
                     mBars.addAll((mBars.size()), mBarsTemp);
+
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -270,6 +272,8 @@ public class FragmentBar extends Fragment implements OnClickBarItem,View.OnClick
                             });
                         }
                     }).start();
+                }else {
+                    mAdapter.onLastServerItem();
                 }
 
                 mProgressBar.setVisibility(View.GONE);

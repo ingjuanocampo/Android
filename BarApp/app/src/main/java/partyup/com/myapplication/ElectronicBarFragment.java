@@ -121,7 +121,7 @@ public class ElectronicBarFragment extends Fragment {
 
                         @Override
                         public void onLastElement() {
-                            Log.w("onLastElement", "here");
+                            Log.w("onLastListElement", "here");
 
                         }
                     }, mViewContainer.getContext());

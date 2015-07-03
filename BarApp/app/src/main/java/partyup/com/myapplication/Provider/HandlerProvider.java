@@ -10,7 +10,7 @@ public class HandlerProvider {
 
     public static ProviderBase getProvider(){
 
-        return Provider.getProvider(ProviderType.MOCK);
+        return Provider.getProvider(ProviderType.SERVER);
 
     }
 

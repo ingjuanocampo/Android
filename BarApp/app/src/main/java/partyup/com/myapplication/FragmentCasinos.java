@@ -50,6 +50,7 @@ public class FragmentCasinos  extends Fragment implements OnClickBarItem,View.On
     private ArrayList<Bar> mBars;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private ImageView ImgRefreshUI;
+    private int Pager =0;
     //private ProgressBar buttonProgressBar;
     //private ArrayList<Bar> mBars= new ArrayList<>();
 
@@ -141,6 +142,7 @@ public class FragmentCasinos  extends Fragment implements OnClickBarItem,View.On
         mSwipeRefreshLayout.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
         //ImgRefreshUI.setOnClickListener(null);
+        Pager=0;
 
         HandlerProvider.getProvider().setmContext(mViewContainer.getContext());
 
@@ -179,7 +181,7 @@ public class FragmentCasinos  extends Fragment implements OnClickBarItem,View.On
                         })
                         .show(); // Don’t forget to show!
             }
-        }, 1);
+        }, Pager++);
 
 
     }
@@ -235,29 +237,30 @@ public class FragmentCasinos  extends Fragment implements OnClickBarItem,View.On
 
                 ArrayList<Bar> mBarsTemp = (ArrayList<Bar>) responce;
 
-                mBars.addAll((mBars.size()),mBarsTemp);
-                //mAdapter = new RecyclerAdapterBar(mBars, FragmentBar.this, mViewContainer.getContext());
+                if(mBarsTemp.size()!=0) {
+                    mBars.addAll((mBars.size()), mBarsTemp);
 
-                //mRecyclerView.setAdapter(mAdapter);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        getActivity().runOnUiThread(new Runnable() {
-
-                            @Override
-                            public void run() {
-                                mAdapter.notifyDataSetChanged();
-                                //buttonProgressBar.setVisibility(View.GONE);
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
-                        });
-                    }
-                }).start();
+                            getActivity().runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    mAdapter.notifyDataSetChanged();
+                                }
+                            });
+                        }
+                    }).start();
+                }else {
+                    mAdapter.onLastServerItem();
+                }
 
                 mProgressBar.setVisibility(View.GONE);
 
@@ -268,7 +271,7 @@ public class FragmentCasinos  extends Fragment implements OnClickBarItem,View.On
             public void onFailResponse(String msn) {
 
             }
-        }, 2);
+        }, Pager++);
 
 
     }

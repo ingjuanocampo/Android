@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -31,12 +30,16 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import partyup.com.myapplication.Objects.Bar;
+import partyup.com.myapplication.Objects.Bars_subObject;
 import partyup.com.myapplication.Objects.Category;
 import partyup.com.myapplication.Objects.ColorsTheme;
 import partyup.com.myapplication.Provider.HandlerProvider;
 import partyup.com.myapplication.Provider.OnProviderResponse;
+import partyup.com.myapplication.Provider.ProviderBase;
 import partyup.com.myapplication.utiles.AndroidUtiles;
 import partyup.com.myapplication.utiles.Definitions;
 import partyup.com.myapplication.utiles.GsonConverter;
@@ -52,13 +55,19 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
     private LinearLayout mLinearMarketDetails;
     private boolean isVisibleDetails=false;
     private ArrayList<Bar>  mBars= new ArrayList<>();
-    private Map <Marker,Integer> mMarksMap;
     private TextView txtPrice,txtName,txtDir;
     private ImageView imgClose;
     private ImageView imgBar;
     private LinearLayout lnViewDetails;
     private ProgressBar mProgressBar;
     private LinearLayout mLinearMain;
+    private int Pager=0;
+    private boolean isTheLastServerItem=false;
+    private boolean isLocationUpdated=false;
+    private Map <Marker,Integer> mMarksMap;
+    private Map <Marker,Integer> mMarkMapRemoved;
+    private FloatingActionButton  FabSub1,FabSub2,FabSub3,FabSub4;
+    private Set<Marker> Markerts;
 
 
     @Override
@@ -78,6 +87,8 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
         getDataFromProvider();
 
         setAnimatios();
+        mMarksMap= new HashMap<>();
+
 
 
 
@@ -97,7 +108,14 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
         lnViewDetails =(LinearLayout)findViewById(R.id.linear_marker_details);
         mProgressBar=(ProgressBar)findViewById(R.id.progress_bar_map);
         mLinearMain=(LinearLayout)findViewById(R.id.linear_maps_main);
-
+        FabSub1=(FloatingActionButton)findViewById(R.id.fab_btn_filter_1);
+        FabSub1.setOnClickListener(this);
+        FabSub2=(FloatingActionButton)findViewById(R.id.fab_btn_filter_2);
+        FabSub2.setOnClickListener(this);
+        FabSub3=(FloatingActionButton)findViewById(R.id.fab_btn_filter_3);
+        FabSub3.setOnClickListener(this);
+        FabSub4=(FloatingActionButton)findViewById(R.id.fab_btn_filter_4);
+        FabSub4.setOnClickListener(this);
         //Preview Market Details
 
 
@@ -166,8 +184,13 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
     @Override
     public void onMyLocationChange(Location location) {
 
-        //CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 17);
-        //mMap.moveCamera(cameraUpdate);
+        if(!isLocationUpdated){
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(),location.getLongitude()), 17);
+            mMap.moveCamera(cameraUpdate);
+            isLocationUpdated=true;
+        }
+
+
 
     }
 
@@ -188,40 +211,71 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.fab_btn_more_map:
-                if(isShowingSubBtns){
-                    isShowingSubBtns=false;
-                    mLinearSubBtns.startAnimation(mAnimOff);
-                    mLinearSubBtns.setLayoutAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
+                hideMoreFABbutton();
+                break;
+            case R.id.fab_btn_filter_1:
+                hideMoreFABbutton();
+                removeMarkerByCategory(ProviderBase.BarCategory);
+                break;
+            case R.id.fab_btn_filter_2:
+                hideMoreFABbutton();
+                break;
+            case R.id.fab_btn_filter_3:
+                hideMoreFABbutton();
+                break;
+            case R.id.fab_btn_filter_4:
+                hideMoreFABbutton();
+                break;
+        }
+    }
 
-                        }
+    private void removeMarkerByCategory(Category barCategory) {
+        Markerts = mMarksMap.keySet(); ///co nla sllaves que son los markers se peude filtrar
+        ArrayList<Marker> marketsList= new ArrayList<>(Markerts);
 
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            mLinearSubBtns.setVisibility(View.GONE);
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
-                    });
-                    //mLinearSubBtns.setVisibility(View.GONE);
-                    mFABBtn.startAnimation(mAnimRotateInverse);
+        if(barCategory.getId().equals(ProviderBase.BarCategory.getId())){
+                for(int i=0;i<mBars.size();i++){
+                    if(mBars.get(i).getBars_category().getId().equals(ProviderBase.BarCategory.getId()))
+                        marketsList.get(i).remove();
+                }
+            }
+        }
 
 
-                }else {
-                    mLinearSubBtns.setVisibility(View.VISIBLE);
-                    mLinearSubBtns.startAnimation(mAnimOn);
-                    mFABBtn.startAnimation(mAnimRotate);
-                    isShowingSubBtns=true;
+
+    private void hideMoreFABbutton() {
+        if(isShowingSubBtns){
+            isShowingSubBtns=false;
+            mLinearSubBtns.startAnimation(mAnimOff);
+            mLinearSubBtns.setLayoutAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
 
                 }
 
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    mLinearSubBtns.setVisibility(View.GONE);
 
-                break;
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            //mLinearSubBtns.setVisibility(View.GONE);
+            mFABBtn.startAnimation(mAnimRotateInverse);
+            mFABBtn.setImageResource(R.drawable.ic_expand_less_white_24dp);
+
+
+        }else {
+            mLinearSubBtns.setVisibility(View.VISIBLE);
+            mLinearSubBtns.startAnimation(mAnimOn);
+            mFABBtn.startAnimation(mAnimRotate);
+            isShowingSubBtns=true;
+            mFABBtn.setImageResource(R.drawable.abc_ic_clear_mtrl_alpha);
+
         }
     }
 
@@ -315,45 +369,83 @@ public class MapsActivity extends AppCompatActivity implements GoogleMap.OnMyLoc
 
     public void getDataFromProvider() {
 
-        mMarksMap= new HashMap<>();
+        if(!isTheLastServerItem){
+
+            mProgressBar.setVisibility(View.VISIBLE);
+
+            HandlerProvider.getProvider().getBars(ProviderBase.AllCategory, new OnProviderResponse() {
+                @Override
+                public void onSucessResponse(Object responce) {
+                    ArrayList<Bar> tempBars = (ArrayList<Bar>) responce;
 
 
-        HandlerProvider.getProvider().getBars(new Category("",""), new OnProviderResponse() {
-            @Override
-            public void onSucessResponse(Object responce) {
-                mBars=(ArrayList<Bar>)responce;
 
-                mProgressBar.setVisibility(View.GONE);
+                    if (tempBars.size()>0) {
+                        mBars.addAll(mBars.size(), tempBars);
 
+                        mProgressBar.setVisibility(View.GONE);
 
 
-                for(Bar bar:mBars){
-                    mMarksMap.put(mMap.addMarker(new MarkerOptions().position(bar.getCordinates()).icon(BitmapDescriptorFactory
-                            .defaultMarker(BitmapDescriptorFactory.HUE_BLUE))), count++);
+                        for (Bar bar : tempBars) {
+                            mMarksMap.put(mMap.addMarker(addMarketbyCategory(bar.getBars_category(),bar.getCordinates())), count++);
+
+                        }
+
+                        getDataFromProvider();//Again to check if there more items in the server
+
+                    }else {
+                        isTheLastServerItem=true;
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+                }
+
+                @Override
+                public void onFailResponse(String msn) {
+
+                    Log.e("MapsActivity", "onFailResponse" + msn);
+
+
+                    mProgressBar.setVisibility(View.GONE);
+
+                    Snackbar
+                            .make(mLinearMain, "Sin Conexión", Snackbar.LENGTH_LONG)
+                            .setAction("OK", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                }
+                            })
+                            .show(); // Don’t forget to show!
 
                 }
-            }
-
-            @Override
-            public void onFailResponse(String msn) {
-
-                Log.e("MapsActivity", "onFailResponse" + msn);
+            },Pager++);
+        }
 
 
-                mProgressBar.setVisibility(View.GONE);
-
-                Snackbar
-                        .make(mLinearMain, "Sin Conexión", Snackbar.LENGTH_LONG)
-                        .setAction("OK", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                            }
-                        })
-                        .show(); // Don’t forget to show!
-
-            }
-        },1);
 
 
+    }
+
+    private MarkerOptions addMarketbyCategory(Bars_subObject bars_category,LatLng cor) {
+
+
+        if(bars_category.getId().equals(ProviderBase.BarCategory.getId())){
+            return new MarkerOptions().position(cor).icon(BitmapDescriptorFactory
+                    .defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+        }else if (bars_category.getId().equals(ProviderBase.DiscoCategory.getId())){
+            return new MarkerOptions().position(cor).icon(BitmapDescriptorFactory
+                    .defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+        }else if (bars_category.getId().equals(ProviderBase.RestauranCategory.getId())) {
+            return new MarkerOptions().position(cor).icon(BitmapDescriptorFactory
+                    .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+        }
+        else if (bars_category.getId().equals(ProviderBase.CasinoCategory.getId())) {
+            return new MarkerOptions().position(cor).icon(BitmapDescriptorFactory
+                    .defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        }
+
+
+
+        return new MarkerOptions().position(cor).icon(BitmapDescriptorFactory
+                .defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
     }
 }

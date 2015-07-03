@@ -22,6 +22,7 @@ public abstract class ProviderBase {
     public static final Category CasinoCategory= new Category("casino","2");
     public static final Category RestauranCategory= new Category("restaurant","3");
     public static final Category DiscoCategory= new Category("disco","4");
+    public static final Category AllCategory= new Category("all","5");
 
 
 

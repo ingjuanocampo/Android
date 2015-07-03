@@ -115,7 +115,18 @@ public class ActivitySiteDetails extends AppCompatActivity {
 
         item = new ItemDetails();
         item.setmImgResource(R.drawable.ic_schedule_black_24dp);
-        item.setmData(mBar.getmSchedule());
+
+
+        try{
+
+            item.setmData(mBar.getBars_week_schedules().get(0).getStart_week_day()+" - " +
+                    mBar.getBars_week_schedules().get(0).getEnd_week_day());
+
+        }catch (NullPointerException | IndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+
+
         item.setmTitle("Horario");
 
         data.add(item);

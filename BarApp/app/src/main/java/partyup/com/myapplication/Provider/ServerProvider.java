@@ -15,7 +15,7 @@ import partyup.com.myapplication.utiles.GsonConverter;
  */
 public class ServerProvider extends ProviderBase {
 
-    private static final int pageLenght=1;
+    private static final int pageLenght=10;
 
     private static ProviderBase instance;
 
@@ -47,7 +47,11 @@ public class ServerProvider extends ProviderBase {
             }
         },getmContext());
 
-        mExcutor.execute(Definitions.GET,"/bars",String.valueOf(page*pageLenght),String.valueOf(pageLenght),category.getName());
+        if(category!=AllCategory)
+            mExcutor.execute(Definitions.GET,"/bars",String.valueOf(page*pageLenght),String.valueOf(pageLenght),category.getName());
+        else
+            mExcutor.execute(Definitions.GET,"/bars",String.valueOf(page*pageLenght),String.valueOf(pageLenght));
+
 
 
 

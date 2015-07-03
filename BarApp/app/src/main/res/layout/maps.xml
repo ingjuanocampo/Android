@@ -56,62 +56,58 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-
                 android:visibility="gone">
                 <android.support.design.widget.FloatingActionButton
                     android:layout_margin="10dp"
-                    android:layout_height="@dimen/height_width_floating_sub_button"
-                    android:layout_width="@dimen/height_width_floating_sub_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     app:layout_anchor="@id/appbar"
                     android:elevation="10dp"
-                    android:src="@drawable/ic_more_vert_white_24dp"
+                    android:src="@drawable/ic_local_bar_white_24dp"
                     android:clickable="true"
                     app:elevation="@dimen/floating_elevation"
                     app:borderWidth="0dp"
                     app:backgroundTint="@color/browToobar"
-
-
+                    android:id="@+id/fab_btn_filter_1"
                     />
                 <android.support.design.widget.FloatingActionButton
                     android:layout_margin="10dp"
-                    android:layout_height="@dimen/height_width_floating_sub_button"
-                    android:layout_width="@dimen/height_width_floating_sub_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     app:layout_anchor="@id/appbar"
                     android:elevation="3dp"
-                    android:src="@drawable/ic_more_vert_white_24dp"
+                    android:src="@drawable/ic_disc_full_white_24dp"
                     android:clickable="true"
                     app:elevation="@dimen/floating_elevation"
                     app:borderWidth="0dp"
                     app:backgroundTint="@color/purpleBToobar"
-
+                    android:id="@+id/fab_btn_filter_2"
                     />
                 <android.support.design.widget.FloatingActionButton
                     android:layout_margin="10dp"
-                    android:layout_height="@dimen/height_width_floating_sub_button"
-                    android:layout_width="@dimen/height_width_floating_sub_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     app:layout_anchor="@id/appbar"
                     android:elevation="3dp"
-                    android:src="@drawable/ic_more_vert_white_24dp"
+                    android:src="@drawable/ic_restaurant_menu_white_24dp"
                     android:clickable="true"
                     app:elevation="@dimen/floating_elevation"
                     app:borderWidth="0dp"
                     app:backgroundTint="@color/cyanBToobar"
-
-
+                    android:id="@+id/fab_btn_filter_3"
                     />
                 <android.support.design.widget.FloatingActionButton
                     android:layout_margin="10dp"
-                    android:layout_height="@dimen/height_width_floating_sub_button"
-                    android:layout_width="@dimen/height_width_floating_sub_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     app:layout_anchor="@id/appbar"
                     android:elevation="3dp"
-                    android:src="@drawable/ic_more_vert_white_24dp"
+                    android:src="@drawable/ic_account_balance_white_24dp"
                     android:clickable="true"
                     app:elevation="@dimen/floating_elevation"
                     app:borderWidth="0dp"
                     app:backgroundTint="@color/redToolbar"
-
-
+                    android:id="@+id/fab_btn_filter_4"
                     />
 
             </LinearLayout>
@@ -126,6 +122,8 @@
                 app:elevation="@dimen/floating_elevation"
                 android:id="@+id/fab_btn_more_map"
                 app:borderWidth="0dp"
+                app:backgroundTint="@color/gray"
+
                 android:layout_margin="10dp"
                 />
 

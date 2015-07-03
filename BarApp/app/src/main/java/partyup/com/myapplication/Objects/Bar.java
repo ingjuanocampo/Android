@@ -3,6 +3,8 @@ package partyup.com.myapplication.Objects;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+
 /**
  * Created by user on 07/05/2015.
  */
@@ -17,15 +19,46 @@ public class Bar {
     private String city="";
     private String province="";
     private String phones="";
-    private String hits="";
-    private String likes="";
     private String created="";
     private String updated="";
-    private String mSchedule="";
     private double price =0;
     private String WebSite="";
     private String MusicStyle="";
     private String PaymentsSystem;
+    private String address ="";
+    private String lng ="";
+    private String lat ="";
+    private String mVisist="";
+    private String ex_image_url ="";
+    private Bars_subObject bars_franchise= new Bars_subObject();
+    private Bars_subObject bars_category= new Bars_subObject();
+    private ArrayList<Bar_week_shedules> bars_week_schedules= new ArrayList<>();
+    private String likes="";
+    private String hits="";
+
+    public Bars_subObject getBars_franchise() {
+        return bars_franchise;
+    }
+
+    public void setBars_franchise(Bars_subObject bars_franchise) {
+        this.bars_franchise = bars_franchise;
+    }
+
+    public Bars_subObject getBars_category() {
+        return bars_category;
+    }
+
+    public void setBars_category(Bars_subObject bars_category) {
+        this.bars_category = bars_category;
+    }
+
+    public ArrayList<Bar_week_shedules> getBars_week_schedules() {
+        return bars_week_schedules;
+    }
+
+    public void setBars_week_schedules(ArrayList<Bar_week_shedules>  bars_week_schedules) {
+        this.bars_week_schedules = bars_week_schedules;
+    }
 
     public void setCordinates(String lat,String lon){
         this.lat=lat;
@@ -174,27 +207,19 @@ public class Bar {
     }
 
     public String getImage_url() {
-        return image_url;
+        return ex_image_url;
     }
 
     public void setImage_url(String image_url) {
-        this.image_url = image_url;
+        this.ex_image_url = image_url;
     }
 
-    private String address ="";
-    private String lng ="";
-    private String lat ="";
-    private String mVisist="";
-    private String image_url ="";
-
-
-
     public String getmImaginePath() {
-        return image_url;
+        return ex_image_url;
     }
 
     public void setmImaginePath(String mImaginePath) {
-        this.image_url = mImaginePath;
+        this.ex_image_url = mImaginePath;
     }
 
 
@@ -236,14 +261,6 @@ public class Bar {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public String getmSchedule() {
-        return mSchedule;
-    }
-
-    public void setmSchedule(String mSchedule) {
-        this.mSchedule = mSchedule;
     }
 
     public String getmVisist() {

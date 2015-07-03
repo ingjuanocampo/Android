@@ -49,18 +49,15 @@ public class ManagerAsynTask extends AsyncTask<String, Void, ResponseFormat> {
         this.Type=params[0];
         this.complement=params[1];
 
-        if(params.length>2){
+        if(params.length>=3){
             this.params.put("o",params[2]);
             this.params.put("l",params[3]);
         }
 
-        if(params.length>3){
+        if(params.length>=5){
             this.params.put("category",params[4]);
 
         }
-
-
-
 
         if (Type.equals(Definitions.GET))
             /*resultadoPost =*/

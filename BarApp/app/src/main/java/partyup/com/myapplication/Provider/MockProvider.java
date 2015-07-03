@@ -11,6 +11,7 @@ import java.util.Objects;
 
 import partyup.com.myapplication.Objects.Bar;
 import partyup.com.myapplication.Objects.BarFragmentObject;
+import partyup.com.myapplication.Objects.Bar_week_shedules;
 import partyup.com.myapplication.Objects.Category;
 import partyup.com.myapplication.Objects.ColorsTheme;
 import partyup.com.myapplication.RequestManager.ManagerAsynTask;
@@ -24,6 +25,8 @@ import partyup.com.myapplication.utiles.GsonConverter;
 public class MockProvider extends ProviderBase {
 
     private static ProviderBase instance;
+    private Bar_week_shedules mockShedule;
+    private ArrayList<Bar_week_shedules>  schedulee= new ArrayList<>();
     public static ProviderBase getInstance(){
         if(instance==null){
             instance = new MockProvider();
@@ -35,7 +38,7 @@ public class MockProvider extends ProviderBase {
 
 
     /**
-     * Bar: ColorsTheme.CYAN
+     * Bar: ColorsTheme.BROWN
      * Casinos: ColorsTheme.RED
      *
      *
@@ -46,12 +49,15 @@ public class MockProvider extends ProviderBase {
     @Override
     public void getBars(Category category, final OnProviderResponse activity,int page) {
 
+        mockShedule = new Bar_week_shedules();
+        mockShedule.setStart_day_time("Lunes");
+        mockShedule.setEnd_day_time("Sabado");
+        schedulee.add(mockShedule);
+
         if (category==BarCategory){
             if(page==0){
                 activity.onSucessResponse(getBars());
-
             }else {
-
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -63,10 +69,8 @@ public class MockProvider extends ProviderBase {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-
                     }
                 }).start();
-
             }
 
         }else if(category==DiscoCategory){
@@ -82,7 +86,7 @@ public class MockProvider extends ProviderBase {
             Bar mBar= new Bar();
             mBar.setmAddress("ZONA T");
             mBar.setmName("FONETICA BAR");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Bar-Cafe");
             mBar.setColor(ColorsTheme.RED.name());
             mBar.setWebSite("www.fonetica.com");
@@ -102,7 +106,7 @@ public class MockProvider extends ProviderBase {
             mBar= new Bar();
             mBar.setmAddress("Galerias");
             mBar.setmName("TABU BAR");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Discoteca");
             mBar.setColor(ColorsTheme.BROWN.name());
             mBar.setWebSite("www.tabu.com");
@@ -121,7 +125,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Calle 127 # 12-15");
             mBar.setmName("BBC");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Bar-Cafe");
             mBar.setColor(ColorsTheme.PURPLE.name());
             mBar.setWebSite("www.bbc.com");
@@ -139,7 +143,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Zona T, Calle 85-15 #3");
             mBar.setmName("Paradise");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Bar-Cafe");
             mBar.setColor(ColorsTheme.CYAN.name());
             mBar.setWebSite("www.paradice.com");
@@ -157,7 +161,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Norte, Calle 170 21 #12");
             mBar.setmName("Level5");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Discoteca");
             mBar.setColor(ColorsTheme.GRAY.name());
             mBar.setWebSite("www.level5.com");
@@ -177,7 +181,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Norte, Calle 170 21 #12");
             mBar.setmName("V.I.P Party");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Discoteca");
             mBar.setColor(ColorsTheme.BLUE.name());
             mBar.setWebSite("www.level5.com");
@@ -199,7 +203,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Norte, Calle 180 21 #12");
             mBar.setmName("Casa de la cerveza");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Discoteca");
             mBar.setColor(ColorsTheme.RED.name());
             mBar.setWebSite("www.level5.com");
@@ -221,7 +225,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Calle 80 21#12");
             mBar.setmName("ELQierubin");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Bar");
             mBar.setColor(ColorsTheme.PURPLE_B.name());
             mBar.setWebSite("www.querubin.com");
@@ -244,7 +248,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Calle 80 21#12");
             mBar.setmName("ELQierubin");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Bar");
             mBar.setColor(ColorsTheme.CYAN.name());
             mBar.setWebSite("www.querubin.com");
@@ -265,7 +269,7 @@ public class MockProvider extends ProviderBase {
 
             mBar.setmAddress("Calle 80 21#12");
             mBar.setmName("ELQierubin");
-            mBar.setmSchedule("7pm - 12am");
+            mBar.setBars_week_schedules(schedulee);
             mBar.setCategory("Bar");
             mBar.setColor(ColorsTheme.BLUE_C.name());
             mBar.setWebSite("www.querubin.com");
@@ -292,10 +296,14 @@ public class MockProvider extends ProviderBase {
     }
 
     private ArrayList<Bar> getRestaurants() {
+
+
+
+
         Bar mBar= new Bar();
         mBar.setmAddress("ZONA T");
         mBar.setmName("FONETICA BAR");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar-Cafe");
         mBar.setColor(ColorsTheme.CYAN.name());
         mBar.setWebSite("www.fonetica.com");
@@ -315,7 +323,7 @@ public class MockProvider extends ProviderBase {
         mBar= new Bar();
         mBar.setmAddress("Galerias");
         mBar.setmName("TABU BAR");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Discoteca");
         mBar.setColor(ColorsTheme.CYAN.name());
         mBar.setWebSite("www.tabu.com");
@@ -334,7 +342,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Calle 127 # 12-15");
         mBar.setmName("BBC");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar-Cafe");
         mBar.setColor(ColorsTheme.CYAN.name());
         mBar.setWebSite("www.bbc.com");
@@ -352,7 +360,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Zona T, Calle 85-15 #3");
         mBar.setmName("Paradise");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar-Cafe");
         mBar.setColor(ColorsTheme.CYAN.name());
         mBar.setWebSite("www.paradice.com");
@@ -374,7 +382,7 @@ public class MockProvider extends ProviderBase {
         Bar mBar= new Bar();
         mBar.setmAddress("ZONA T");
         mBar.setmName("FONETICA BAR");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar-Cafe");
         mBar.setColor(ColorsTheme.RED.name());
         mBar.setWebSite("www.fonetica.com");
@@ -406,7 +414,7 @@ public class MockProvider extends ProviderBase {
         mBar= new Bar();
         mBar.setmAddress("Galerias");
         mBar.setmName("TABU BAR");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Discoteca");
         mBar.setColor(ColorsTheme.PURPLE.name());
         mBar.setWebSite("www.tabu.com");
@@ -425,7 +433,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Zona T, Calle 85-15 #3");
         mBar.setmName("Paradise");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar-Cafe");
         mBar.setColor(ColorsTheme.PURPLE.name());
         mBar.setWebSite("www.paradice.com");
@@ -443,7 +451,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Norte, Calle 170 21 #12");
         mBar.setmName("Level5");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Discoteca");
         mBar.setColor(ColorsTheme.PURPLE.name());
         mBar.setWebSite("www.level5.com");
@@ -463,7 +471,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Norte, Calle 170 21 #12");
         mBar.setmName("V.I.P Party");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Discoteca");
         mBar.setColor(ColorsTheme.PURPLE.name());
         mBar.setWebSite("www.level5.com");
@@ -485,7 +493,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Calle 80 21#12");
         mBar.setmName("ELQierubin");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar");
         mBar.setColor(ColorsTheme.PURPLE.name());
         mBar.setWebSite("www.querubin.com");
@@ -508,7 +516,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Calle 80 21#12");
         mBar.setmName("ELQierubin");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar");
         mBar.setColor(ColorsTheme.PURPLE.name());
         mBar.setWebSite("www.querubin.com");
@@ -529,7 +537,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Calle 80 21#12");
         mBar.setmName("ELQierubin");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar");
         mBar.setColor(ColorsTheme.PURPLE.name());
         mBar.setWebSite("www.querubin.com");
@@ -554,7 +562,7 @@ public class MockProvider extends ProviderBase {
         Bar mBar= new Bar();
         mBar.setmAddress("ZONA T");
         mBar.setmName("FONETICA BAR");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar-Cafe");
         mBar.setColor(ColorsTheme.BROWN.name());
         mBar.setWebSite("www.fonetica.com");
@@ -574,7 +582,7 @@ public class MockProvider extends ProviderBase {
         mBar= new Bar();
         mBar.setmAddress("Galerias");
         mBar.setmName("TABU BAR");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Discoteca");
         mBar.setColor(ColorsTheme.BROWN.name());
         mBar.setWebSite("www.tabu.com");
@@ -593,7 +601,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Calle 127 # 12-15");
         mBar.setmName("BBC");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Bar-Cafe");
         mBar.setColor(ColorsTheme.BROWN.name());
         mBar.setWebSite("www.bbc.com");
@@ -612,7 +620,7 @@ public class MockProvider extends ProviderBase {
 
         mBar.setmAddress("Norte, Calle 180 21 #12");
         mBar.setmName("Casa de la cerveza");
-        mBar.setmSchedule("7pm - 12am");
+        mBar.setBars_week_schedules(schedulee);
         mBar.setCategory("Discoteca");
         mBar.setColor(ColorsTheme.BROWN.name());
         mBar.setWebSite("www.level5.com");

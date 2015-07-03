@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import partyup.com.myapplication.Interfaces.OnClickBarItem;
+import partyup.com.myapplication.Interfaces.OnLastServerItem;
 import partyup.com.myapplication.Objects.Bar;
 import partyup.com.myapplication.Objects.ColorsTheme;
 import partyup.com.myapplication.R;
@@ -24,11 +25,13 @@ import partyup.com.myapplication.R;
 /**
  * Created by user on 07/05/2015.
  */
-public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.PersonViewHolder>{
+public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.PersonViewHolder> implements OnLastServerItem{
 
     private final Context mContext;
     private ArrayList<Bar> mBars= new ArrayList<>();
     private static OnClickBarItem mActividad;
+    private boolean isLastItem=false;
+    private ProgressBar pg;
 
 
     public RecyclerAdapterBar(ArrayList<Bar> bars, OnClickBarItem actividad,Context context){
@@ -49,7 +52,18 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
     @Override
     public void onBindViewHolder(RecyclerAdapterBar.PersonViewHolder holder, final int position) {
         holder.txtBarName.setText(mBars.get(position).getmName());
-        holder.txtHours.setText(mBars.get(position).getmSchedule());
+
+        try{
+
+            holder.txtHours.setText(mBars.get(position).getBars_week_schedules().get(0).getStart_week_day()+" - " +
+                    mBars.get(position).getBars_week_schedules().get(0).getEnd_week_day());
+
+        }catch (NullPointerException | IndexOutOfBoundsException e){
+
+        }
+
+
+
         holder.txtBarPrice.setText(mBars.get(position).getPrice());
         holder.txtBarAddress.setText(mBars.get(position).getmAddress());
         Picasso.with(mContext).
@@ -68,7 +82,7 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
             }
         });
 
-        if(position==(mBars.size()-1)){
+        if(!isLastItem && position==(mBars.size()-1)){
             holder.buttonProgressBar.setVisibility(View.VISIBLE);
 
             mActividad.onLastElement();
@@ -76,6 +90,8 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
             holder.buttonProgressBar.setVisibility(View.GONE);
 
         }
+
+        pg=holder.buttonProgressBar;
 
 
     }
@@ -122,6 +138,12 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
         return mBars.size();
     }
 
+    @Override
+    public void onLastServerItem() {
+        isLastItem=true;
+        pg.setVisibility(View.GONE);
+    }
+
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
@@ -143,10 +165,6 @@ public class RecyclerAdapterBar extends RecyclerView.Adapter<RecyclerAdapterBar.
             txtBarAddress= (TextView)itemView.findViewById(R.id.bar_dir);
             lnCardview=(LinearLayout)itemView.findViewById(R.id.linear_cardview_item);
             buttonProgressBar=(ProgressBar)itemView.findViewById(R.id.linear_progress);
-
-
-
-
 
         }
 
